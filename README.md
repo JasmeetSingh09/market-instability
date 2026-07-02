@@ -113,3 +113,24 @@ period-artifact flagged for TDA. On a fair, 2008-inclusive test the edge would
 very likely vanish. **Conclusion: the SFI is a concrete new metric, rigorously
 tested, that does not reliably beat volatility for crash prediction** — the
 honest, expected result given that crashes largely resist prediction.
+
+### Ablation, fragility-space geometry & benchmark battery (`fragility_space.py`)
+Treating the lenses as orthogonal dimensions F = (R, T, H) and testing rigorously:
+
+| Model | AUC | 95% CI |
+|---|---|---|
+| R+T+H (in-sample) | 0.693 | [0.52, 0.82] |
+| Fragility logistic (time-series CV, out-of-sample) | **0.589** | — |
+| avg correlation (benchmark) | 0.630 | [0.51, 0.80] |
+| volatility (benchmark) | 0.531 | [0.50, 0.71] |
+| drawdown (benchmark) | 0.550 | [0.50, 0.71] |
+
+**Findings (honest):** (1) all CIs overlap — no signature is statistically
+distinguishable from another or from the benchmarks; (2) the cross-validated
+out-of-sample AUC (0.589) is well below the in-sample figure (0.693), the usual
+overfitting gap; (3) a trivial average-correlation benchmark (0.630) matches the
+full three-lens composite. **Conclusion:** the composite carries only modest
+crash-precursor information and does not reliably beat simple risk measures — so
+the defensible contribution is *characterising* fragility across markets, not
+predicting crashes. (Caveat: 2010–2024 excludes 2008, weakening the volatility
+benchmark; conclusions should lean on the cross-market picture.)
