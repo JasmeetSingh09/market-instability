@@ -98,9 +98,14 @@ volatility everywhere. *Market-specific:* crypto is ~3–4× more volatile and
 benefits **more** from cleaning (bigger vol reduction) — consistent with a noisier
 covariance matrix.
 
-### Systemic Fragility Index (`fragility_index.py`) — a new composite metric
-Fused the three lenses into one index: SFI = z(spectral market-mode share) +
-z(geometric dimensional collapse) + z(temporal volatility-clustering).
+### Integrated fragility framework (`fragility_index.py`, `fragility_space.py`)
+We do NOT claim a novel "index" (combining indicators is common). The more
+defensible framing: an **integrated framework that jointly analyzes the spectral,
+geometric, and temporal signatures of fragility**, representing each market state
+as a point in a 3-D **fragility space** F = (R, T, H). That space — not a
+hand-weighted score — is the cleaner contribution: it enables clustering,
+trajectories, regime changes, and cross-market comparison. The weighted index
+SFI = z(R)+z(T)+z(H) is reported only as one summary of that space.
 
 Crash-warning AUC (2010–2024): SFI 0.69, spectral 0.65, geometric 0.63,
 temporal 0.58, **volatility 0.53**.
