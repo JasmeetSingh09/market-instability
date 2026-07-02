@@ -1,19 +1,25 @@
-# Three Mathematical Lenses on Market Instability
+# A Unified Mathematical Framework for Characterizing Systemic Market Fragility
+### Spectral, Geometric, and Temporal Analysis
 
-*An integrated framework: when does a market stop being a collection of
-independent parts and become one fragile, synchronized system?*
-
-**ISEF category:** Mathematics (spans Algebra, Geometry & Topology, and
-Probability & Statistics — a deliberately multi-disciplinary framework).
+*When does a market stop behaving as many independent assets and become one
+synchronized, fragile system?*
 
 ---
 
+## Definition (the heart of the thesis)
+> **We define systemic fragility as the progressive loss of statistical
+> independence among market participants — manifested as (i) rising correlation
+> and market-mode dominance, (ii) collapse of the geometric diversity of the
+> return structure, and (iii) self-exciting cascades of extreme events.**
+
+Each of those three manifestations is measured by a different branch of
+mathematics, giving three complementary "lenses" on the *same* phenomenon.
+
 ## The unifying question
 A **healthy** market is *diverse*: assets move somewhat independently, so risk
-diversifies and structure is rich. A **fragile** market **synchronizes** —
-correlations spike, structure collapses, and behaviour becomes self-exciting.
-This single phenomenon — the loss of independence — can be measured through
-**three different branches of mathematics**, each a distinct "microscope":
+diversifies and structure is rich. A **fragile** market **synchronizes**. This
+loss of independence is measured through **three branches of mathematics**, each
+a distinct "microscope":
 
 | Lens | Branch of math | The object studied | The instability signature |
 |---|---|---|---|
@@ -139,3 +145,23 @@ crash-precursor information and does not reliably beat simple risk measures — 
 the defensible contribution is *characterising* fragility across markets, not
 predicting crashes. (Caveat: 2010–2024 excludes 2008, weakening the volatility
 benchmark; conclusions should lean on the cross-market picture.)
+
+---
+
+## Are the three lenses actually complementary? (`complementarity.py`)
+We test the thesis's core claim empirically rather than assert it.
+
+**1. Redundancy (pairwise correlation).** Spectral & Geometric are **0.97
+correlated — nearly redundant**; Temporal is weakly correlated with both
+(~0.22). **2. Unique value (leave-one-out AUC).** Removing Temporal costs the
+most (−0.052); removing Spectral or Geometric barely hurts (−0.014 each, since
+they cover each other). **3. Timing (lead before crashes).** Geometric peaks ~24
+trading days before onset, Spectral ~22, **Temporal ~11** — structure degrades
+first, self-excitation follows.
+
+**Honest conclusion:** the lenses are only *partially* complementary. **Temporal
+(Hawkes) is genuinely distinct**; **Spectral and Geometric are largely redundant**
+(≈2 effective dimensions, not 3, with these eigenvalue-based proxies — the true
+TDA persistence signal may be more distinct, a limitation to check). The
+**staged timing** (structural collapse ~22–24 days out, temporal self-excitation
+~11 days out) is a genuine, interpretable finding about *how* fragility unfolds.
