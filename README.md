@@ -77,3 +77,39 @@ These are **research prototypes** that establish the direction and the core
 results. The full ISEF paper (developed with the mentor/professor) would unify
 the formal write-up, add labelled data where needed (esp. real pump events for
 Hawkes), and extend each method (RIE estimators, multivariate Hawkes, etc.).
+
+---
+
+## Extensions toward research novelty
+
+### Multi-market generalisation (`multimarket.py`)
+Ran the lenses across **India equities, US equities, and crypto** to separate
+universal from market-specific behaviour:
+
+| Market | Hawkes branching ratio n (extreme moves) | GMV vol: sample → Ledoit-Wolf |
+|---|---|---|
+| India equities | 0.57 [0.44, 0.75] | 16.3% → 15.9% |
+| US equities | 0.60 [0.45, 0.75] | 15.4% → 15.1% |
+| Crypto | 0.59 [0.51, 0.71] | 58.7% → 55.4% |
+
+**Findings.** *Universal:* extreme-move self-excitation is remarkably consistent
+(n ≈ 0.57–0.60) across all three markets, and covariance cleaning lowers GMV
+volatility everywhere. *Market-specific:* crypto is ~3–4× more volatile and
+benefits **more** from cleaning (bigger vol reduction) — consistent with a noisier
+covariance matrix.
+
+### Systemic Fragility Index (`fragility_index.py`) — a new composite metric
+Fused the three lenses into one index: SFI = z(spectral market-mode share) +
+z(geometric dimensional collapse) + z(temporal volatility-clustering).
+
+Crash-warning AUC (2010–2024): SFI 0.69, spectral 0.65, geometric 0.63,
+temporal 0.58, **volatility 0.53**.
+
+**Honest verdict (do NOT overclaim this):** the SFI's apparent edge over
+volatility is **not statistically significant** (bootstrap 95% CI of the lift
+includes 0), AND the volatility baseline is anomalously weak here **only because
+2010–2024 excludes the 2008 crash** where volatility dominates — the same
+period-artifact flagged for TDA. On a fair, 2008-inclusive test the edge would
+very likely vanish. **Conclusion: the SFI is a concrete new metric, rigorously
+tested, that does not reliably beat volatility for crash prediction** — the
+honest, expected result given that crashes largely resist prediction.
