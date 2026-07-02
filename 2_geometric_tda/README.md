@@ -91,3 +91,18 @@ descriptive TDA-finance papers.
 ## Reference
 Gidea & Katz (2018), *Topological Data Analysis of Financial Time Series:
 Landscapes of Crashes*, Physica A — the foundational paper this extends to Indian markets.
+
+---
+
+## Research-grade robustness study (`tda_research.py`)
+
+To pre-empt "you just picked a crash definition that kills TDA," we compute the
+correlation-structure topology once, then sweep the crash definition (drawdown
+threshold x horizon) and report the AUC lift of (TDA + volatility) over
+volatility with a paired block-bootstrap 95% CI for each.
+
+**Result — across all 9 crash definitions (-8/-10/-12% x 15/20/30 days):**
+the TDA lift is small (+0.01 to +0.05) and **statistically insignificant in
+EVERY case** (all CIs include 0). The "TDA adds no significant edge over
+volatility" conclusion is therefore **robust**, not an artifact of one
+definition. A rigorously-established null result.

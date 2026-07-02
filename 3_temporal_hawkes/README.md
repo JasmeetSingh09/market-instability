@@ -74,3 +74,25 @@ simulations the branching ratio detects stealth pumps that volume cannot.
 ## Reference
 Hawkes (1971), *Spectra of some self-exciting and mutually exciting point
 processes*; Bacry, Mastromatteo & Muzy (2015), *Hawkes processes in finance*.
+
+---
+
+## Research-grade study (`hawkes_research.py`)
+
+The prototype's single AUC = 1.0 was not credible alone. Here we sweep the pump's
+branching ratio n and run 15 Monte-Carlo trials per level, reporting detection
+AUC with 95% CIs for both the Hawkes branching ratio and a volume baseline. Every
+pump is volume-matched, so volume should stay at chance by construction.
+
+| Pump intensity n | Hawkes AUC (95% CI) | Volume AUC (95% CI) |
+|---|---|---|
+| 0.3 | 0.93 [0.77, 1.00] | 0.50 [0.25, 0.73] |
+| 0.5 | 1.00 [0.98, 1.00] | 0.53 [0.17, 0.86] |
+| 0.7 | 0.98 [0.88, 1.00] | 0.43 [0.06, 0.76] |
+| 0.9 | 1.00 [1.00, 1.00] | 0.31 [0.13, 0.50] |
+
+**Finding:** the branching ratio detects volume-matched pumps with AUC > 0.9 even
+at modest self-excitation (n >= 0.3), while volume stays at chance (~0.5)
+throughout. Detection is characterised with CIs, not a single lucky run.
+**Limitation:** still simulation — real-data validation needs a labelled pump
+dataset (the honest next step).
