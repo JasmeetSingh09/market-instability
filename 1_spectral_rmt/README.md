@@ -82,3 +82,36 @@ at large T) — RMT is not uniquely best, but it is interpretable (it tells you
 ## Reference
 Laloux, Cizeau, Bouchaud & Potters (1999), *Noise Dressing of Financial
 Correlation Matrices* — the foundational RMT-in-finance result this applies to NSE.
+
+---
+
+## Research-grade study (`rmt_research.py`) — RMT vs Ledoit-Wolf, with significance
+
+Upgraded from the prototype to a rigorous empirical study. Primary metric:
+**out-of-sample realised volatility** of the global minimum-variance portfolio
+(the honest metric for a covariance estimator — GMV's job is to minimise
+variance, and realised risk is far less noisy than Sharpe). Every difference
+carries a **paired block-bootstrap 95% confidence interval**.
+
+**Result — realised GMV volatility vs noise ratio q = N/T (39 NSE stocks, 2010–2024):**
+
+| T | q=N/T | Sample | Ledoit-Wolf | RMT | RMT − LW (95% CI) | Verdict |
+|---|---|---|---|---|---|---|
+| 60 | 0.65 | 19.2% | 13.2% | 13.4% | +0.14% [−0.19,+0.52] | tie |
+| 120 | 0.33 | 14.3% | 13.0% | 13.1% | +0.12% [−0.06,+0.31] | tie |
+| 252 | 0.15 | 13.3% | 12.9% | 13.1% | +0.19% [+0.05,+0.33] | **LW better (sig)** |
+| 400 | 0.10 | 13.1% | 12.9% | 13.1% | +0.20% [+0.07,+0.33] | **LW better (sig)** |
+
+**Findings:**
+1. **Covariance cleaning is essential:** raw sample covariance is disastrous when
+   data is scarce (19.2% realised vol at q=0.65 vs ~13% cleaned); the gap widens
+   sharply with q.
+2. **RMT vs Ledoit-Wolf are statistically tied** at high q; Ledoit-Wolf holds a
+   **small but statistically significant edge** when data is plentiful (q low).
+   RMT never significantly beats it on this market.
+3. **Conclusion:** on Indian equities the simpler Ledoit-Wolf shrinkage is at
+   least as good as RMT — a rigorously-supported, mildly contrarian result.
+
+**Limitations:** survivorship bias (current constituents); GMV only (no expected
+returns); daily data; single market. Confidence intervals quantify statistical
+but not model uncertainty.
