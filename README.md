@@ -156,8 +156,11 @@ correlated — nearly redundant**; Temporal is weakly correlated with both
 (~0.22). **2. Unique value (leave-one-out AUC).** Removing Temporal costs the
 most (−0.052); removing Spectral or Geometric barely hurts (−0.014 each, since
 they cover each other). **3. Timing (lead before crashes).** Geometric peaks ~24
-trading days before onset, Spectral ~22, **Temporal ~11** — structure degrades
-first, self-excitation follows.
+trading days before onset [CI 17,31], Spectral ~22 [16,29], **Temporal ~11**
+[5,19]. The structure-minus-temporal lead is **+12 days, 95% CI [+3,+20],
+permutation p = 0.026 — statistically significant**: structural degradation
+*precedes* temporal self-excitation (caveat: n=13 crashes, small sample; should
+be re-checked across more markets).
 
 **Honest conclusion:** the lenses are only *partially* complementary. **Temporal
 (Hawkes) is genuinely distinct**; **Spectral and Geometric are largely redundant**

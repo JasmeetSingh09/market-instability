@@ -17,6 +17,8 @@ import numpy as np
 import pandas as pd
 from fragility_space import build, auc, z
 
+rng = np.random.default_rng(0)
+
 
 def run():
     df = build()
@@ -57,16 +59,35 @@ def run():
                 peak_pos = int(np.argmax(seg))         # where the signal peaked
                 leads[c].append((o - max(0, o - 40)) - peak_pos)  # trading days before onset
     if all(leads[c] for c in leads):
-        print(f"  crashes analysed: {len(leads['R'])}")
+        n = len(leads["R"])
+        print(f"  crashes analysed: {n}")
         for c, name in [("R", "Spectral"), ("T", "Geometric"), ("H", "Temporal")]:
-            print(f"  {name:9s}: peaks on avg {np.mean(leads[c]):.0f} trading days before onset")
-        order = sorted(["R", "T", "H"], key=lambda c: -np.mean(leads[c]))
-        names = {"R": "Spectral", "T": "Geometric", "H": "Temporal"}
-        print(f"  -> earliest-to-latest: {' -> '.join(names[c] for c in order)}")
+            arr = np.array(leads[c], float)
+            bs = [np.mean(rng.choice(arr, len(arr), replace=True)) for _ in range(2000)]
+            lo, hi = np.percentile(bs, [2.5, 97.5])
+            print(f"  {name:9s}: {arr.mean():.0f} days [95% CI {lo:.0f},{hi:.0f}]")
+
+        # Is 'structure leads temporal' statistically real? paired test.
+        struct = (np.array(leads["R"], float) + np.array(leads["T"], float)) / 2
+        temporal = np.array(leads["H"], float)
+        diff = struct - temporal                                  # >0 => structure earlier
+        # paired bootstrap CI of the mean difference
+        bd = [np.mean(rng.choice(diff, len(diff), replace=True)) for _ in range(5000)]
+        lo, hi = np.percentile(bd, [2.5, 97.5])
+        # permutation test: randomly flip the sign of each paired diff
+        obs = diff.mean()
+        perm = [np.mean(diff * rng.choice([-1, 1], len(diff))) for _ in range(5000)]
+        pval = np.mean(np.abs(perm) >= abs(obs))
+        print(f"\n  Structure-minus-temporal lead: {obs:+.0f} days "
+              f"[95% CI {lo:+.0f},{hi:+.0f}], permutation p = {pval:.3f}")
+        sig = (lo > 0 or hi < 0) and pval < 0.05
+        print(f"  -> staged timing (structure BEFORE temporal) is "
+              f"{'STATISTICALLY SIGNIFICANT' if sig else 'suggestive but NOT significant'} "
+              f"(n={n} crashes — small sample).")
 
     print("\nVerdict: weak inter-lens correlation + each lens adding unique AUC +")
-    print("different lead times together constitute EMPIRICAL complementarity —")
-    print("evidence the three-lens framework is more than three redundant views.")
+    print("distinct lead times are evidence of complementarity — but the lead-time")
+    print("DIFFERENCE is only claimed as significant if the test above says so.")
 
 
 if __name__ == "__main__":
