@@ -96,3 +96,20 @@ at modest self-excitation (n >= 0.3), while volume stays at chance (~0.5)
 throughout. Detection is characterised with CIs, not a single lucky run.
 **Limitation:** still simulation — real-data validation needs a labelled pump
 dataset (the honest next step).
+
+---
+
+## Sharpened: detection metrics + real data (`manipulation_detection.py`)
+Manipulation is *rare*, so ROC-AUC alone is misleading. On imbalanced episodes
+(15% pumps, volume-matched):
+
+| Detector | ROC-AUC | PR-AUC (base 0.15) | FPR @ 80% recall |
+|---|---|---|---|
+| **Hawkes branching ratio** | 0.998 | **0.990** | **0.000** |
+| Volume (event count) | 0.500 | 0.392 | 1.000 |
+
+The branching ratio catches 80% of pumps with **zero false positives**; volume is
+useless (PR-AUC ~ base rate, FPR = 1.0). A live-data check confirms real crypto
+self-excites (DOGE n=0.54, BTC n=0.62). **Honest limit:** metrics are on
+controlled simulation; the real-data check shows self-excitation, not a verified
+pump — a labelled real pump-and-dump dataset is the clear next step.
