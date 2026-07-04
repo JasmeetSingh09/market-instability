@@ -168,3 +168,28 @@ be re-checked across more markets).
 TDA persistence signal may be more distinct, a limitation to check). The
 **staged timing** (structural collapse ~22–24 days out, temporal self-excitation
 ~11 days out) is a genuine, interpretable finding about *how* fragility unfolds.
+
+---
+
+## Why are the spectral and geometric lenses redundant? (`redundancy_analysis.py`)
+We move from *observing* the 0.97 R–T correlation to *explaining* it — stated
+honestly as a proposition under an explicit assumption, then validated.
+
+**Proposition (Dominant Market-Mode Approximation).** With R = λ_max/N and
+T = 1 − PR/N (participation ratio PR = N²/Σλ²): IF one eigenvalue dominates
+(Σλ² ≈ λ_max²), THEN PR ≈ 1/R² and **T ≈ 1 − 1/(N R²)** — so T becomes an explicit
+increasing function of R, forcing the two measures to co-move.
+
+**Validation.** corr(T, predicted-T) = **0.94**, which explains the empirical
+corr(R, T) = 0.974. The absolute error is not small (~0.32 overall) — the
+approximation captures the *direction*, not exact values.
+
+**Breakdown conditions (a second contribution).** The error falls monotonically
+as the market mode dominates: mean |error| = 0.72 (low dominance) → **0.06 (high
+dominance)**; 0.48 in calm markets vs 0.16 in turbulent ones. So the relationship
+**holds when the market mode dominates (crisis/turbulent regimes) and breaks down
+in calm markets** with a spread-out spectrum.
+
+This is an *analytical approximation + empirical validation + characterised
+limits* — a defensible applied-mathematics result (a Proposition, not a theorem),
+and a stronger contribution than reporting the correlation alone.
