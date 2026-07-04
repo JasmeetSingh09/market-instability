@@ -91,7 +91,14 @@ assumption.
   is the next step.
 - The staged-timing result uses n = 13 crashes (small sample) — significant but
   to be re-checked across more markets.
-- Survivorship bias (current constituents); daily data (no microstructure).
+- Survivorship bias (current constituents).
+- **Daily-data caveat for the temporal lens:** the Hawkes branching ratio is
+  estimated on DAILY extreme moves, so a value near 0.6 may partly reflect
+  ordinary volatility clustering (GARCH-type behaviour) rather than genuine
+  microstructural self-excitation. True microstructural self-excitation would
+  require intraday/order-book (tick) data, which is out of scope here. The
+  branching ratio should therefore be read as a *coarse* self-excitation proxy,
+  not a microstructure measurement.
 
 ## Part 4 — Two framings (pick with the professor)
 - **Framework-led (recommended, honest):** the fragility space + staged timing +
