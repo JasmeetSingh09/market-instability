@@ -196,22 +196,53 @@ and a stronger contribution than reporting the correlation alone.
 
 ---
 
-## Is the geometric lens genuinely independent? (`geometric_independence.py`)
+## Is the geometric lens a genuinely distinct measurement? (`geometric_independence.py`)
 The earlier 0.97 spectral–geometric redundancy was an **artifact of the geometric
 coordinate's definition**: the participation ratio PR = N^2/sum(lambda^2) is a
 function of the eigenvalues, so it was really a *second spectral measure*. We test
 a coordinate that is NOT eigenvalue-based — the persistent-homology (H1) signal of
 the correlation-distance point cloud (topology / connectivity, not variance).
 
+**(A) Correlation with the spectral coordinate R.**
+
 | Geometric coordinate | corr with spectral R |
 |---|---|
-| Participation-ratio proxy (eigenvalue-based) | **+0.97** (redundant) |
-| **Persistent homology H1 norm (true topology)** | **−0.37** (independent) |
-| Persistent entropy (true topology) | −0.38 (independent) |
+| Participation-ratio proxy (eigenvalue-based) | **+0.97** (near-redundant) |
+| **Persistent homology H1 norm (true topology)** | **−0.37** (complementary) |
+| Persistent entropy (true topology) | −0.38 (complementary) |
 
-**Finding:** using *true* persistent homology, the geometric coordinate is
-genuinely independent of the spectral one (corr −0.37, not 0.97). So the framework
-should use **persistent homology as the geometric coordinate**, not the
-participation-ratio proxy — then the three lenses measure three genuinely distinct
-facets of fragility. (The negative sign is interpretable: as the market mode grows,
-correlations rise, the point cloud collapses, and topological loops shrink.)
+**(B) Ablation — does the true topological lens add *unique* crash-warning info?**
+Correlation alone is weak evidence; the stronger test is whether the topological
+feature improves a model *over the spectral lens alone*. We z-score and combine
+{spectral R, true-topology T_tda, temporal H} and compare crash-warning AUC:
+
+| Model | AUC |
+|---|---|
+| spectral only | 0.649 |
+| geometric only (true topology) | 0.529 |
+| temporal only | 0.582 |
+| spectral + geometric | 0.641 |
+| spectral + temporal | **0.679** |
+| spectral + geometric + temporal | 0.669 |
+
+**Honest reading (do NOT overclaim):** the true topological coordinate is
+*informationally* complementary (corr −0.37, not redundant), **but it does not add
+predictive lift** — spectral+geometric (0.641) is no better than spectral alone
+(0.649), whereas the *temporal* lens does add lift (spectral+temporal 0.679). So
+the correct claim is nuanced: replacing the proxy with real persistent homology
+makes the geometric lens a **genuinely distinct measurement** (fixes the "two
+spectral measures" problem), yet on *this* crash-prediction task it carries little
+*unique predictive* value — consistent with the project's overall finding that
+fragility can be characterized more reliably than crashes can be predicted.
+
+**Careful wording (this matters):** a correlation of −0.37 is **NOT statistical
+independence** — it means the topological summary is only **weakly-to-moderately
+correlated** with the spectrum, i.e. it carries information that is **not merely a
+restatement of the eigenvalues**. The defensible claim is that the three
+coordinates are **complementary and capture distinct information**, *not* that they
+are "independent." With this change the geometric lens is a genuinely different
+mathematical object (topology/connectivity), so the framework can honestly present
+**three mathematically distinct representations** — spectral, topological, temporal
+— rather than two spectral measures plus one temporal. (The negative sign is
+interpretable: as the market mode grows, correlations rise, the point cloud
+collapses, and topological loops shrink.)
