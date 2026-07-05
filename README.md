@@ -235,6 +235,22 @@ spectral measures" problem), yet on *this* crash-prediction task it carries litt
 *unique predictive* value — consistent with the project's overall finding that
 fragility can be characterized more reliably than crashes can be predicted.
 
+**(C) Does topology have a role beyond prediction? (`geometric_role.py`)**
+A fair follow-up: if it doesn't improve crash prediction, does topology at least
+distinguish market states that *evolve* differently? We test whether, **conditional
+on the same spectral signature R**, topology separates forward behaviour (forward
+20-day vol and drawdown). Result — **also largely negative, reported honestly:**
+partial corr(T_tda, forward vol | R) = −0.07 and (forward drawdown | R) = −0.04,
+i.e. near zero. Within matched-R quintiles the forward outcomes of high- vs
+low-topology states are nearly identical; the only flicker is the most-synchronized
+quintile (forward vol 0.205 vs 0.165), a single bin that does not survive the
+partial-correlation test. **Conclusion:** on daily Indian-equity data the
+topological lens is a *mathematically distinct* measurement but does **not** carry
+meaningful unique information about either crash timing or regime character. Its
+value is conceptual/structural, not predictive; a genuine predictive role, if one
+exists, would more likely appear on intraday data or in distinguishing specific
+crisis morphologies — an honest limitation and future direction, not a claim.
+
 **Careful wording (this matters):** a correlation of −0.37 is **NOT statistical
 independence** — it means the topological summary is only **weakly-to-moderately
 correlated** with the spectrum, i.e. it carries information that is **not merely a
