@@ -193,3 +193,25 @@ in calm markets** with a spread-out spectrum.
 This is an *analytical approximation + empirical validation + characterised
 limits* — a defensible applied-mathematics result (a Proposition, not a theorem),
 and a stronger contribution than reporting the correlation alone.
+
+---
+
+## Is the geometric lens genuinely independent? (`geometric_independence.py`)
+The earlier 0.97 spectral–geometric redundancy was an **artifact of the geometric
+coordinate's definition**: the participation ratio PR = N^2/sum(lambda^2) is a
+function of the eigenvalues, so it was really a *second spectral measure*. We test
+a coordinate that is NOT eigenvalue-based — the persistent-homology (H1) signal of
+the correlation-distance point cloud (topology / connectivity, not variance).
+
+| Geometric coordinate | corr with spectral R |
+|---|---|
+| Participation-ratio proxy (eigenvalue-based) | **+0.97** (redundant) |
+| **Persistent homology H1 norm (true topology)** | **−0.37** (independent) |
+| Persistent entropy (true topology) | −0.38 (independent) |
+
+**Finding:** using *true* persistent homology, the geometric coordinate is
+genuinely independent of the spectral one (corr −0.37, not 0.97). So the framework
+should use **persistent homology as the geometric coordinate**, not the
+participation-ratio proxy — then the three lenses measure three genuinely distinct
+facets of fragility. (The negative sign is interpretable: as the market mode grows,
+correlations rise, the point cloud collapses, and topological loops shrink.)
