@@ -15,6 +15,11 @@ synchronized, fragile system?*
 Each of those three manifestations is measured by a different branch of
 mathematics, giving three complementary "lenses" on the *same* phenomenon.
 
+> **→ New reader / judge: start with [`CONTRIBUTION.md`](CONTRIBUTION.md).** It
+> states the single contribution in one sentence and shows how every part of this
+> repo (RMT, TDA, Hawkes, the Proposition, branching criticality, Ricci curvature)
+> is *supporting evidence* for that one thesis — not a separate project.
+
 ## The unifying question
 A **healthy** market is *diverse*: assets move somewhat independently, so risk
 diversifies and structure is rich. A **fragile** market **synchronizes**. This
