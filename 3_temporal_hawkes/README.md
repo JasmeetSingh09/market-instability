@@ -113,3 +113,21 @@ useless (PR-AUC ~ base rate, FPR = 1.0). A live-data check confirms real crypto
 self-excites (DOGE n=0.54, BTC n=0.62). **Honest limit:** metrics are on
 controlled simulation; the real-data check shows self-excitation, not a verified
 pump — a labelled real pump-and-dump dataset is the clear next step.
+
+---
+
+## Real-data step (`real_data_validation.py`)
+Beyond simulation: fit the Hawkes model on REAL crypto (hourly) in weekly windows
+and test whether the branching ratio rises with real price violence.
+
+| Coin | weeks | corr(n, severity) | n (calm weeks) | n (violent weeks) |
+|---|---|---|---|---|
+| DOGE-USD | 62 | +0.21 | 0.14 | 0.35 |
+| SHIB-USD | 58 | +0.20 | 0.28 | 0.35 |
+| XRP-USD | 52 | +0.14 | 0.30 | 0.33 |
+
+The branching ratio is positively correlated with severity and higher in violent
+weeks across all three coins — the detector's core quantity behaves as expected on
+**real** data, not just simulation. **Honest limit:** these are *proxy* extreme
+episodes, not SEC-labelled or verified pump events; a labelled dataset is the
+definitive next step.

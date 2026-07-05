@@ -115,3 +115,17 @@ carries a **paired block-bootstrap 95% confidence interval**.
 **Limitations:** survivorship bias (current constituents); GMV only (no expected
 returns); daily data; single market. Confidence intervals quantify statistical
 but not model uncertainty.
+
+---
+
+## Beyond the market mode: Marchenko-Pastur edge tracking (`mp_edge_tracking.py`)
+R = lambda_max/N tracks only the single market-mode eigenvalue. We also track
+k_edge = number of eigenvalues (excluding the market mode) above the MP upper edge
+lambda_+ = sigma^2 (1+sqrt(q))^2 — i.e. genuine sector-level synchronisation.
+
+**Result (NSE, 2010–2024):** avg k_edge = 1.23 (range 0–3). Crash-warning AUC:
+R = 0.649, k_edge = 0.522 (weak alone), **R + k_edge = 0.700** (modest lift). The
+hypothesis that sector synchronisation *leads* the market mode was **not** clearly
+supported — k_edge is too sparse (0–3) for a clean lead-time estimate. Honest
+finding: sector-edge counting adds a little complementary information but is not a
+strong standalone early-warning signal.
