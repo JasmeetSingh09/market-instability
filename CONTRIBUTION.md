@@ -36,6 +36,14 @@ branches of mathematics:
 The market state at time t is the point **F(t) = (R, T, H)** in a fragility space.
 The contribution is this *space and its honest evaluation* — not any one lens.
 
+> *Coordinates vs. experiments:* the fragility-space **coordinates** are cheap
+> closed-form proxies (T = effective-rank/participation-ratio geometry; H = lag-1
+> autocorrelation of squared returns). The deeper **experiments** use richer objects
+> of the same lens — persistent homology and Ollivier–Ricci curvature for geometry,
+> and the fitted Hawkes branching ratio for the temporal lens. The proxies place
+> every window in the space; the experiments probe each lens in depth. See
+> [`FRAMEWORK_AND_CONTRIBUTION.md`](FRAMEWORK_AND_CONTRIBUTION.md) Part 1.
+
 ## 3. How every piece supports the one thesis (the hierarchy)
 
 **Core (the spine — this is the contribution):**

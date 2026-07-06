@@ -131,9 +131,13 @@ compared in Section 5: (i) a participation-ratio proxy T = 1 − PR/N with
 PR = N²/Σλ² (eigenvalue-based), and (ii) genuine persistent homology of the
 correlation-distance point cloud (topology-based).
 
-**Temporal coordinate (self-excitation).**
-  H_t = branching ratio of a Hawkes process fit to the window's extreme-event times
-  (Section 7), range [0, 1). H = 0 for independent shocks; H → 1 for cascading ones.
+**Temporal coordinate (self-excitation).** As the light coordinate we use a cheap
+daily proxy, H_t = lag-1 autocorrelation of squared returns in the window (H = 0 for
+independent shocks; larger H for clustering/self-excitation). The richer object of
+the same lens — the fitted Hawkes branching ratio n = α/β and its
+branching-criticality interpretation — is studied separately as the temporal
+experiment (Section 7). We keep the proxy coordinate and the fitted-Hawkes
+experiment distinct throughout.
 
 The map F : t ↦ (R_t, T_t, H_t) places every market state in the unit cube, with a
 robust pole near (1/N, 0, 0) and a fragile pole near (1, 1−1/N, ~1). The remainder of

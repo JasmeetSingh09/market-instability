@@ -13,26 +13,50 @@ unit diagonal, so trace(C_t) = N). Let its eigenvalues be
 0 <= lambda_1 <= ... <= lambda_N, with sum_i lambda_i = N.
 
 We define three **fragility coordinates**, each measuring one facet of the loss
-of statistical independence:
+of statistical independence.
+
+> **IMPORTANT — coordinates vs. experiments (read this).** The three *coordinates*
+> below are deliberately **cheap, closed-form proxies** that can be computed on
+> every rolling window to place a market state in the space. They are NOT the same
+> objects as the richer standalone *experiments* elsewhere in this project. In
+> particular:
+> - the geometric coordinate T is **effective-rank (participation-ratio) geometry**,
+>   which is *distinct* from the persistent-homology and Ollivier-Ricci-curvature
+>   analyses (`geometric_independence.py`, `ricci_curvature.py`);
+> - the temporal coordinate H is a **daily self-excitation proxy** (lag-1
+>   autocorrelation of squared returns), which is *distinct* from the fitted Hawkes
+>   **branching ratio** used in the temporal experiments (`3_temporal_hawkes/`).
+>
+> Keeping the light coordinates separate from the heavy experiments is what makes
+> the fragility space computable everywhere while the experiments probe each lens
+> in depth. Wherever this document says "coordinate," it means the proxy below.
 
 **1. Spectral coordinate R_t (market-mode dominance).**
     R_t = lambda_N / N,        range [1/N, 1].
 - Fraction of total variance carried by the dominant "market mode."
 - R = 1/N  <=>  all eigenvalues equal (maximally diverse, no common mode).
 - R -> 1   <=>  one mode dominates (full synchronization).
+- (This coordinate coincides with the object studied in the spectral experiments.)
 
-**2. Geometric coordinate T_t (dimensional collapse).**
+**2. Geometric coordinate T_t (dimensional collapse — effective-rank geometry).**
     Participation ratio  PR_t = (sum_i lambda_i)^2 / sum_i lambda_i^2 = N^2 / sum_i lambda_i^2,
     the "effective number of active modes." Define
     T_t = 1 - PR_t / N,        range [0, 1 - 1/N].
 - T = 0            <=>  effective rank = N (structure fully spread out).
 - T -> 1 - 1/N     <=>  effective rank -> 1 (structure collapses to one direction).
+- **Note:** T is *eigenvalue-based* effective-rank geometry. The persistent-homology
+  and Ricci-curvature coordinates are separate geometric objects (Section on
+  geometric independence); do not conflate them with T.
 
-**3. Temporal coordinate H_t (self-excitation).**
-    H_t = branching ratio of a Hawkes process fit to the extreme-event times in
-    the window (proxy: lag-1 autocorrelation of squared returns), range [0, 1).
-- H = 0    <=>  shocks arrive independently (Poisson).
-- H -> 1   <=>  each shock triggers a cascade of further shocks.
+**3. Temporal coordinate H_t (self-excitation — daily proxy).**
+    H_t = lag-1 autocorrelation of squared returns in the window, range roughly [0, 1).
+    This is a cheap daily proxy for self-excitation.
+- H = 0    <=>  shocks arrive independently (no clustering).
+- H -> 1   <=>  shocks cluster / self-excite.
+- **Note:** H is the *proxy*, not the fitted Hawkes branching ratio n = alpha/beta.
+  The true branching ratio (and its branching-criticality interpretation, n -> 1)
+  is estimated separately in the temporal experiments (`3_temporal_hawkes/`,
+  `BRANCHING_CRITICALITY.md`); H only stands in for it inside the light coordinate.
 
 **The Fragility Space** is the map
     F : t  |->  (R_t, T_t, H_t)  in  [0, 1]^3,
