@@ -53,6 +53,76 @@ turns up, narrow the claim accordingly — better to learn now than at judging.
 
 ---
 
+## VERIFIED close-precedent audit (real papers — read these two first)
+
+A web check surfaced two closely related, **verified** papers. Both must be cited and
+discussed explicitly; a judge in this subfield will know them.
+
+**[P1] Chakraborti, Sharma, Pharasi et al. (2021), *Phase separation and scaling in
+correlation structures of financial markets*, J. Phys: Complexity. arXiv:1910.06242.**
+- *What they do:* construct a **phase space from eigenvalue-derived quantities**
+  (eigen-entropy from eigen-centralities) in which market events (bubbles, crashes)
+  undergo order–disorder phase separation.
+- *Overlap:* the "phase space from spectral quantities for market transitions" idea is
+  **anticipated here.** Do NOT claim inventing a spectral "space."
+- *How we differ:* we add a **temporal (Hawkes) coordinate** and a **topological**
+  coordinate, and we **derive** a closed-form relationship between spectral
+  coordinates (they use entropy scaling empirically, not an analytic coordinate bound).
+
+**[P2] Kulkarni, Pharasi et al. (2024), *Investigation of Indian stock markets using
+topological data analysis and geometry-inspired network measures*, Physica A.
+arXiv:2311.17016.**
+- *What they do:* **discrete Ricci curvature + persistent homology on NSE/BSE** to
+  assess fragility/systemic risk; find persistent entropy more robust than L1/L2
+  persistence-landscape norms.
+- *Overlap:* this is a **large overlap** with our geometric/topological lens — same
+  tools, same market, same purpose. We **cannot** claim novelty for "Ricci + PH on
+  Indian markets for fragility." They did it.
+- *How we differ:* we do not claim the geometry/topology as new; we **integrate** it
+  with a spectral coordinate that has a **derived** relationship and with a **temporal
+  Hawkes** lens, and we report an honest cross-lens evaluation (independence vs
+  informativeness) rather than proposing the geometric measures themselves.
+
+**Consequence for the claim (honest narrowing).** The defensible remaining novelty is
+NOT the tools, the geometry/topology on Indian markets, or the idea of a spectral
+"space." It is: (a) the **three-lens integration** that adds the **temporal Hawkes**
+coordinate the close papers lack; (b) the **analytical derivation** of the
+spectral-coordinate relationship with an error term; and (c) the **honest evaluation**
+of what each lens does and does not add. State exactly that — nothing broader.
+
+## Sharpened novelty statement (use this wording — focuses on what the paper DOES)
+> *"We propose an operational framework that integrates complementary spectral,
+> temporal, and topological descriptors of market instability. Within this framework
+> we derive explicit relationships among the spectral coordinates, characterize the
+> approximation error theoretically, and empirically determine when the complementary
+> topological and temporal analyses provide additional information."*
+
+It does not depend on being first to conceive a "space" — it claims what the work
+actually does.
+
+## "Why this work is different" (put this table in the paper)
+| Existing literature | This work |
+|---|---|
+| Studies RMT / spectral phase space alone (P1) | Integrates the spectral view with **temporal (Hawkes)** and topological descriptors |
+| Studies TDA + Ricci geometry alone (P2) | Evaluates them **alongside** a spectral coordinate with a **derived** relationship, not as the contribution itself |
+| Uses participation ratio / entropy as descriptive metrics | **Derives** explicit spectral-coordinate relationships and validates *when* they hold |
+| Reports empirical indicators | Combines **theoretical derivation** with **empirical regime analysis** and honest cross-lens evaluation |
+
+This says "here is the combination and emphasis," not "nobody has done this" — a much
+safer, more defensible scientific claim.
+
+## The one-page test to write before submission
+Answer in writing (Jasmeet + mentor):
+> *"If an expert handed us the five closest papers (starting with P1 and P2) and
+> asked 'why isn't your work just a combination of these?', what is our
+> evidence-backed answer?"*
+If you can answer that clearly in one page, the novelty positioning is strong enough.
+The honest answer likely centers on: the **temporal-lens integration** + the
+**analytical spectral-coordinate derivation** + the **honest what-each-lens-adds
+evaluation** — since P1/P2 cover the spectral-space and geometry/topology pieces.
+
+---
+
 ## How to do it (the process)
 1. **Read each paper's abstract + intro + conclusion** (not every proof).
 2. For each, fill the matrix below: which lenses did they use, which markets,
