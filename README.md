@@ -20,8 +20,8 @@ synchronized, fragile system?*
 ---
 
 ## Definition (the heart of the thesis)
-> **We define systemic fragility as the progressive loss of statistical
-> independence among market participants — manifested as (i) rising correlation
+> **In this work, we operationalize systemic fragility as the progressive loss of
+> statistical independence among market participants — manifested as (i) rising correlation
 > and market-mode dominance, (ii) collapse of the geometric diversity of the
 > return structure, and (iii) self-exciting cascades of extreme events.**
 
