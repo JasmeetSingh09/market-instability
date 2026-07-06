@@ -111,7 +111,41 @@ pretending it is more would be the fastest way to lose credibility.
   characterization, and the temporal lens needs intraday data to test true
   microstructural self-excitation.
 
-## 6. What NOT to do now (per the frozen-scope decision)
+## 6. Claim discipline — say these, never say those
+
+A defense checklist. Every claim below is exactly what the evidence supports; the
+"avoid" list is where past drafts (and stale copies) overreached.
+
+**Claims to make (supported):**
+- We **characterize** fragility; we do **not** claim reliable crash prediction
+  (out-of-sample CV AUC 0.589; a trivial avg-correlation benchmark matches the composite).
+- The spectral coordinate and the **participation-ratio geometric proxy** are
+  analytically linked under a dominant market mode — the Proposition T ≈ 1 − 1/(NR²),
+  validated (corr 0.94) with derived breakdown conditions.
+- The geometric lens shows an **independence-vs-informativeness trade-off**: true
+  persistent homology is weakly-correlated with spectral (−0.37) but not predictive;
+  Ollivier–Ricci curvature predicts (rises pre-crash, AUC 0.67) but is redundant with
+  spectral (+0.91).
+- Structural degradation **precedes** temporal clustering (+12 trading days,
+  permutation p = 0.026) in the current tests (n = 13 crashes — small sample).
+- A fitted **Hawkes** module detects *simulated* volume-matched pump-and-dumps that
+  volume surveillance misses; real labelled pump data is still needed.
+- On daily data, crashes do **not** approach branching-process criticality (n → 1)
+  once volatility is controlled — an honest null (mean n ≈ 0.13).
+
+**Claims to avoid (unsupported / overreach):**
+- Do **not** say the fragility index reliably beats volatility for crash prediction.
+- Do **not** call the participation-ratio coordinate "TDA," and do **not** call daily
+  squared-return autocorrelation a true Hawkes branching ratio (coordinate ≠ experiment).
+- Do **not** say the geometric lens is "statistically independent" — −0.37 is not
+  independence; say "weakly-to-moderately correlated / complementary."
+- Do **not** claim Ricci curvature adds *independent* predictive value (it is +0.91
+  redundant with the spectral lens).
+- Do **not** say manipulation detection is proven on real markets (it is simulation).
+- Do **not** imply RMT, TDA, Hawkes, or Ricci curvature are new — the novelty is the
+  integrated characterization and its honest evaluation.
+
+## 7. What NOT to do now (per the frozen-scope decision)
 
 No new lenses, no quantum/chaos/entropy/GNN analogies. From here the only changes
 allowed are: **better validation, cleaner proofs, better reproducibility, better
