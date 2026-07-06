@@ -1,4 +1,4 @@
-# The Fragility Space: A Unified Mathematical Framework for Characterizing Systemic Market Fragility
+# An Econophysics Fragility Space for Financial Markets: Spectral, Structural, and Temporal Signatures of Loss of Independence
 
 *Sample research-paper draft — for review by the strategist/mentor.*
 *Author: Jasmeet Singh. Mentor: [TBD].*
@@ -93,6 +93,21 @@ subjecting every positive-looking result to volatility controls, cross-validatio
 and confidence intervals, and we report the resulting negative results as prominently
 as the positive ones.
 
+**Econophysics perspective.** We adopt an econophysics framing: markets are treated
+as complex systems of many interacting components whose collective, emergent behaviour
+— not the rational choices of individual agents — determines systemic stability. This
+is a matter of method, not rebranding: the three lenses are established
+statistical-physics tools (Random Matrix Theory from Wigner's nuclear spectra; Hawkes
+self-excitation from earthquake-aftershock dynamics; phase-space description of complex
+systems). The framing does two things. First, it sets the correct expectation: like
+physics, we measure the *stability of a system*, not tomorrow's price — so
+"characterize, not predict" is the intended goal, not a shortfall. Second, it justifies
+why *these* three lenses: each is a physically motivated coordinate of one phenomenon,
+the loss of statistical independence. We keep the physics disciplined — we do not claim
+literal Bose–Einstein condensation or Ising magnetization, we do not "reject
+equilibrium economics," and we do not claim to prove phase transitions or predict
+crashes; physical language is used only where the underlying mathematics supports it.
+
 **Contributions.**
 1. A formal fragility space F = (R, T, H) unifying spectral, geometric, and temporal
    signatures of loss of independence (Section 3).
@@ -124,12 +139,16 @@ sample correlation matrix C_t, with eigenvalues 0 ≤ λ_1 ≤ ... ≤ λ_N summ
 
 **Spectral coordinate (market-mode dominance).**
   R_t = λ_N / N, range [1/N, 1]. R = 1/N when all modes are equal (maximal
-  diversity); R → 1 when one mode dominates (full synchronization).
+  diversity); R → 1 when one mode dominates (full synchronization). *Econophysics
+  reading:* the Marchenko–Pastur bulk represents noise-like collective fluctuation,
+  while outlier eigenvalues represent genuine market-wide collective modes.
 
 **Geometric coordinate (structural collapse).** Two candidate definitions are
 compared in Section 5: (i) a participation-ratio proxy T = 1 − PR/N with
 PR = N²/Σλ² (eigenvalue-based), and (ii) genuine persistent homology of the
-correlation-distance point cloud (topology-based).
+correlation-distance point cloud (topology-based). *Econophysics reading:* rising T
+resembles a transition from distributed, independent motion toward synchronized
+collective motion (a phase-transition *analogy*, not a proven physical transition).
 
 **Temporal coordinate (self-excitation).** As the light coordinate we use a cheap
 daily proxy, H_t = lag-1 autocorrelation of squared returns in the window (H = 0 for
@@ -137,11 +156,16 @@ independent shocks; larger H for clustering/self-excitation). The richer object 
 the same lens — the fitted Hawkes branching ratio n = α/β and its
 branching-criticality interpretation — is studied separately as the temporal
 experiment (Section 7). We keep the proxy coordinate and the fitted-Hawkes
-experiment distinct throughout.
+experiment distinct throughout. *Econophysics reading:* Hawkes clustering captures
+cascade-like behaviour, similar to aftershock dynamics and self-organized criticality
+in complex systems.
 
 The map F : t ↦ (R_t, T_t, H_t) places every market state in the unit cube, with a
-robust pole near (1/N, 0, 0) and a fragile pole near (1, 1−1/N, ~1). The remainder of
-the paper studies the structure of this space and the reach of each coordinate.
+robust pole near (1/N, 0, 0) and a fragile pole near (1, 1−1/N, ~1). We describe this
+as a **market-state phase space** — the state space of the system in the
+complex-systems sense. (We deliberately do *not* call it a "microstructure" phase
+space: the data are mostly daily, not order-book/tick data.) The remainder of the
+paper studies the structure of this space and the reach of each coordinate.
 
 **Crash-warning benchmark (2010–2024, NSE).** As a summary, the weighted index
 SFI = z(R) + z(T) + z(H) attains crash-warning AUC 0.69, versus spectral 0.65,
