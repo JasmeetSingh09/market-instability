@@ -128,6 +128,22 @@ The error control ((1-R)/R)^2 is the key structural insight: it is small in
 turbulent, synchronized markets (R near 1) and large in calm, diversified ones
 (R small). The theory therefore *predicts when its own approximation should hold*.
 
+**Interpretation (keeping theorem and data separate).** The theorem is a statement
+about the *mathematical* coordinates, not an empirical law of markets. Precisely:
+within the framework, increasing synchronization R shrinks the eigenvalue mass
+mu = N(1-R) available outside the dominant mode, which tightens the range of possible
+effective-rank values T. Whether real markets actually *move* along that constrained
+path is a separate, empirical question — and in the data this constrained behaviour is
+observed most clearly during turbulent periods (Section 6). We do not claim the
+theorem forces markets to behave a certain way; it constrains what the coordinate
+*can* be, and the data show when that constraint bites.
+
+**Remark (scope).** The theorem characterizes the eigenvalue-based effective-rank
+coordinate only. It does **not** imply equivalent behaviour for the persistent-homology
+or Hawkes coordinates, which are treated as complementary, empirically evaluated
+dimensions of the framework. In particular, it does not prove the topological results
+(measured corr(R, true persistent homology) is only about -0.37, a distinct lens).
+
 ---
 
 ## 6. Experimental validation
