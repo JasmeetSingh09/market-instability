@@ -6,19 +6,28 @@ synchronized, fragile system?*
 
 ---
 
+## Contribution
+> **We propose an operational framework for characterizing systemic market fragility
+> through complementary spectral, geometric, and temporal coordinates. Within this
+> framework we derive explicit relationships between the eigenvalue-based coordinates,
+> characterize the approximation error, and evaluate the framework empirically across
+> multiple market regimes.** We claim the *framework, the integration, the
+> within-framework derivation, and the empirical evaluation* — not the underlying tools
+> (RMT, participation ratio, persistent homology, Ricci curvature, Hawkes), which are
+> established. See [`CONTRIBUTION.md`](CONTRIBUTION.md) and, for the closest prior work,
+> [`LITERATURE_REVIEW.md`](LITERATURE_REVIEW.md).
+
+---
+
 ## Definition (the heart of the thesis)
 > **We define systemic fragility as the progressive loss of statistical
 > independence among market participants — manifested as (i) rising correlation
 > and market-mode dominance, (ii) collapse of the geometric diversity of the
 > return structure, and (iii) self-exciting cascades of extreme events.**
 
-Each of those three manifestations is measured by a different branch of
-mathematics, giving three complementary "lenses" on the *same* phenomenon.
-
-> **→ New reader / judge: start with [`CONTRIBUTION.md`](CONTRIBUTION.md).** It
-> states the single contribution in one sentence and shows how every part of this
-> repo (RMT, TDA, Hawkes, the Proposition, branching criticality, Ricci curvature)
-> is *supporting evidence* for that one thesis — not a separate project.
+We investigate each manifestation using a complementary mathematical framework,
+giving three "lenses" on the *same* phenomenon. (These are useful complementary
+descriptions, not the only possible mathematical ones.)
 
 ## The unifying question
 A **healthy** market is *diverse*: assets move somewhat independently, so risk

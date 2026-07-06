@@ -12,6 +12,12 @@ and by direct simulation.*
 > step in Theorem 2 from scratch, it is not yet yours. What matters at ISEF is not the
 > theorem's difficulty but whether you can explain every line under questioning.
 
+> **Role in the paper (keep it in proportion).** This theorem *supports* the story;
+> it is not the story. The project is about **characterizing market fragility** — the
+> theorem is one piece of evidence that the framework's coordinates are structurally
+> related, nothing more. Do not let it dominate the paper or the poster; it earns a
+> section, not the spotlight. (The paper is not "about proving a spectral bound.")
+
 ---
 
 ## 1. Definitions
