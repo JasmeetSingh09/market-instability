@@ -1,195 +1,224 @@
-# Literature Review — template + starting papers (the novelty gate)
+# Literature Review — Systemic Market Fragility through Spectral, Geometric, and Temporal Lenses
 
-> This is the **highest-priority remaining task** and the one that decides
-> novelty. I can give you the *structure* and the *starting papers* — but the
-> actual review (reading them, finding the gap, judging what's new) must be
-> **yours**, with the professor. That IS the research, and it's what lets you
-> answer the judge's question: *"why hasn't someone already done this?"*
-
----
-
-## Precise novelty positioning (READ FIRST — do NOT claim the tools)
-
-A quick literature check confirms the individual ingredients are **standard**, so we
-must **not** claim any of them:
-- **Effective rank / participation ratio / IPR** are well-established measures of
-  spectral dimensionality (Roy & Vetterli 2007; used on financial correlation
-  matrices by Plerou et al. 2002; Bouchaud & Potters).
-- Using the **largest eigenvalue as the "market mode"** is standard financial RMT
-  (Laloux/Bouchaud/Potters 1999; Plerou et al. 2002).
-- The **inequality** (S ≥ μ²/(N−1)) is elementary Cauchy–Schwarz / power-mean.
-
-So the wrong question is *"Did I discover a new inequality/theorem?"* (answer: no —
-that won't survive expert scrutiny). The **right question** is:
-
-> *"Is this specific combination — the Fragility-Space definitions, the
-> within-framework derivation, the error characterization, and the multi-regime
-> empirical validation — already present together in the literature?"*
-
-Many strong papers invent no new mathematics; they combine known mathematics in a
-novel way to answer a scientific question. That is the claim to make.
-
-**Prior work → what THIS work adds (the table judges want):**
-
-| Prior work | What it establishes | What this work adds |
-|---|---|---|
-| Effective rank / participation ratio (Roy–Vetterli 2007; Plerou 2002) | eigenvalue-based effective dimensionality | uses it as a **coordinate** in a broader fragility framework + derives closed-form relationships to the market-mode coordinate |
-| Financial RMT (Laloux/Bouchaud/Potters 1999; Plerou 2002) | largest eigenvalue = market mode; noise vs signal | **connects** the market-mode coordinate to the effective-rank coordinate via explicit bounds + an error term, and compares theory to observed regimes |
-| Hawkes in finance (Bacry et al. 2015) | self-exciting event dynamics | integrates Hawkes as one **coordinate** alongside spectral/topological, not in isolation |
-| Persistent homology (Gidea–Katz 2018) | topological structure of markets | evaluates it as an **independent empirical lens** (corr with spectral only −0.37) — explicitly NOT implied by the spectral theory |
-
-**The novelty statement to defend (memorize this exact scope):**
-> *"We introduce the Fragility Space framework integrating spectral, temporal, and
-> topological measures of market instability; derive rigorous closed-form
-> relationships between the spectral coordinates **within that framework**;
-> characterize when the dominant-mode approximation is accurate; and validate those
-> predictions empirically across market regimes. We claim ownership of the framework,
-> the integration, the within-framework derivation, and the validation — NOT of RMT,
-> participation ratio, Hawkes, persistent homology, or the Cauchy–Schwarz inequality."*
-
-**Still required before final submission:** a *thorough* search (Jasmeet + mentor) to
-confirm this exact combination hasn't been published together. If a close precedent
-turns up, narrow the claim accordingly — better to learn now than at judging.
+> **Honest provenance.** The paper summaries below are drawn from abstracts and
+> published descriptions (verified via search), not from a full read of every proof.
+> Before submission, **Jasmeet + mentor must read the closest works in full** (marked
+> ★) and confirm the positioning. That deeper reading is the research; this document
+> is a rigorous, verified *scaffold and synthesis*, not a substitute for it.
 
 ---
 
-## VERIFIED close-precedent audit (real papers — read these two first)
+## 1. Purpose and scope
 
-A web check surfaced two closely related, **verified** papers. Both must be cited and
-discussed explicitly; a judge in this subfield will know them.
+This review situates the proposed Fragility Space framework relative to prior work in
+four areas whose tools it uses — **spectral (Random Matrix Theory)**, **geometric
+(network curvature)**, **topological (persistent homology)**, and **temporal
+(self-exciting point processes)** — and relative to prior **integrated / systemic-risk**
+frameworks. The goal is to state precisely *what is established* (so the project claims
+none of it) and *where the narrow, defensible contribution lies*.
 
-**[P1] Chakraborti, Sharma, Pharasi et al. (2021), *Phase separation and scaling in
-correlation structures of financial markets*, J. Phys: Complexity. arXiv:1910.06242.**
-- *What they do:* construct a **phase space from eigenvalue-derived quantities**
-  (eigen-entropy from eigen-centralities) in which market events (bubbles, crashes)
-  undergo order–disorder phase separation.
-- *Overlap:* the "phase space from spectral quantities for market transitions" idea is
-  **anticipated here.** Do NOT claim inventing a spectral "space."
-- *How we differ:* we add a **temporal (Hawkes) coordinate** and a **topological**
-  coordinate, and we **derive** a closed-form relationship between spectral
-  coordinates (they use entropy scaling empirically, not an analytic coordinate bound).
+The central honesty of this review: **every individual tool is mature**, and recent
+work is actively *combining* them. The contribution is therefore not any lens but a
+specific synthesis — and the review is written to make that boundary unmistakable.
 
-**[P2] Kulkarni, Pharasi et al. (2024), *Investigation of Indian stock markets using
-topological data analysis and geometry-inspired network measures*, Physica A.
-arXiv:2311.17016.**
-- *What they do:* **discrete Ricci curvature + persistent homology on NSE/BSE** to
-  assess fragility/systemic risk; find persistent entropy more robust than L1/L2
-  persistence-landscape norms.
-- *Overlap:* this is a **large overlap** with our geometric/topological lens — same
-  tools, same market, same purpose. We **cannot** claim novelty for "Ricci + PH on
-  Indian markets for fragility." They did it.
-- *How we differ:* we do not claim the geometry/topology as new; we **integrate** it
-  with a spectral coordinate that has a **derived** relationship and with a **temporal
-  Hawkes** lens, and we report an honest cross-lens evaluation (independence vs
-  informativeness) rather than proposing the geometric measures themselves.
+---
 
-**Consequence for the claim (honest narrowing).** The defensible remaining novelty is
-NOT the tools, the geometry/topology on Indian markets, or the idea of a spectral
-"space." It is: (a) the **three-lens integration** that adds the **temporal Hawkes**
-coordinate the close papers lack; (b) the **analytical derivation** of the
-spectral-coordinate relationship with an error term; and (c) the **honest evaluation**
-of what each lens does and does not add. State exactly that — nothing broader.
+## 2. Spectral lens — Random Matrix Theory in finance
 
-## Sharpened novelty statement (use this wording — focuses on what the paper DOES)
+**Marchenko & Pastur (1967).** The foundational result: the eigenvalue distribution of
+a large random covariance matrix converges to a known law with a sharp upper edge.
+Eigenvalues inside the band are consistent with noise; those above it carry signal.
+
+**Laloux, Cizeau, Bouchaud & Potters (1999), *Noise dressing of financial correlation
+matrices*.** Showed empirically that the bulk of a financial correlation matrix's
+eigenvalues fall inside the Marchenko–Pastur band (i.e. are noise), while a few large
+eigenvalues — led by the **"market mode"** — lie above it. Cleaning the noise improves
+portfolio risk estimates.
+
+**Plerou, Gopikrishnan, Rosenow, Amaral, Guhr & Stanley (2002).** Extended the RMT
+characterization of the stock-return correlation matrix, and used the **inverse
+participation ratio (IPR)** of eigenvectors to measure localization — establishing the
+participation-ratio family as a standard spectral descriptor.
+
+**Bouchaud & Potters (2009), *Financial applications of RMT*; Roy & Vetterli (2007),
+*The effective rank*.** The former reviews RMT/market-mode methods; the latter defines
+the **effective rank**, the eigenvalue-based effective-dimensionality measure this
+project uses as its coordinate T.
+
+*Takeaway:* the market-mode largest eigenvalue and the participation-ratio / effective
+rank are **standard**. The project claims neither; it uses them as coordinates.
+
+---
+
+## 3. Geometric and topological lenses
+
+### 3a. Topological Data Analysis (persistent homology)
+★ **Gidea & Katz (2018), *Topological Data Analysis of Financial Time Series:
+Landscapes of Crashes*, Physica A 491:820–834.** The canonical TDA-of-crashes paper:
+sliding-window point clouds → Vietoris–Rips persistence → persistence landscapes,
+whose L^p-norms **grow sharply before** the 2000 and 2008 crashes (US indices S&P 500,
+DJIA, NASDAQ, Russell 2000). This is the direct precedent for using persistent homology
+as a crash-precursor.
+
+*(Recent, fast-moving:* multiple 2023–2026 works extend TDA early-warning — e.g.
+persistence-landscape crisis detection with ~34-day lead on US indices, and
+null-validated topological signatures. Jasmeet should scan 2025–2026 q-fin preprints,
+because the topological-early-warning area is active and the novelty window is
+narrowing.)*
+
+### 3b. Network / discrete-geometry (Ricci curvature)
+★ **Sandhu, Georgiou & Tannenbaum (2016), *Ricci curvature: An economic indicator for
+market fragility and systemic risk*, Science Advances.** Represents the market as a
+weighted graph and shows **Ricci curvature is negatively correlated with fragility** —
+crashes are preceded by system-level curvature/robustness changes. This is the direct
+precedent for the project's Ricci-curvature analysis; the project **reproduces**, and
+does not claim, this result.
+
+---
+
+## 4. Temporal lens — self-exciting processes
+
+**Hawkes (1971).** Original self-exciting point process; each event raises the
+intensity of future events (branching ratio n = alpha/beta as the criticality
+parameter).
+
+★ **Bacry, Mastromatteo & Muzy (2015), *Hawkes processes in finance* (arXiv:1502.04592).**
+The standard survey: Hawkes models capture volatility clustering, order-book dynamics,
+and — via **mutual excitation** — contagion; calibrations frequently sit **near the
+critical stability threshold** (n → 1).
+
+**Aït-Sahalia, Cacho-Diaz & Laeven (~2010), *Modeling financial contagion using
+mutually exciting jump processes* (NBER w15850).** Uses mutually-exciting jumps so a
+shock in one asset raises jump intensity in others — self-excitation as a systemic-risk
+/ contagion mechanism.
+
+*Takeaway:* Hawkes-as-self-excitation and branching-ratio criticality are established.
+The project claims neither the model nor criticality; it **integrates** the temporal
+lens with the others and reports an honest null on daily-data criticality.
+
+---
+
+## 5. Systemic-risk / integrated frameworks — the CLOSEST precedents
+
+This is the decisive section: the works nearest to the project's *combination*.
+
+★★ **[P1] Chakraborti, Sharma, Pharasi et al. (2021), *Phase separation and scaling in
+correlation structures of financial markets*, J. Phys: Complexity (arXiv:1910.06242).**
+Constructs a **phase space from eigenvalue-derived quantities** (eigen-entropy from
+eigen-centralities) in which market events (bubbles, crashes) undergo order–disorder
+**phase separation**. → *Anticipates the idea of a spectral "space" for market
+transitions.* The project must NOT claim to have invented a spectral state-space.
+
+★★ **[P2] Kulkarni, Pharasi et al. (2024), *Investigation of Indian stock markets using
+topological data analysis and geometry-inspired network measures*, Physica A
+(arXiv:2311.17016).** Combines **discrete Ricci curvature + persistent homology on
+NSE/BSE** to assess fragility/systemic risk; finds persistent entropy more robust than
+L1/L2 persistence-landscape norms. → *Large overlap with the project's geometric +
+topological lens: same tools, same market, same purpose.* The project must NOT claim
+novelty for Ricci + PH on Indian markets.
+
+**Note:** P1 and P2 share authors (Pharasi/Chakraborti group) — a reviewer in this
+subfield will know both. Cite and discuss them prominently.
+
+*Other systemic-risk framing neighbours:* **Billio, Getmansky, Lo & Pelizzon (2012)**
+(econometric connectedness / systemic risk); **Sornette** (crashes as critical
+phenomena / log-periodic precursors). Neither integrates the three specific lenses.
+
+---
+
+## 6. Synthesis — what is established vs. the gap
+
+| Established in the literature | Reference(s) |
+|---|---|
+| Market-mode largest eigenvalue; noise vs signal | Marchenko–Pastur 1967; Laloux et al. 1999; Plerou 2002 |
+| Participation ratio / effective rank as spectral descriptors | Plerou 2002; Roy–Vetterli 2007 |
+| Persistent homology as crash precursor | Gidea–Katz 2018 |
+| Ricci curvature as fragility indicator | Sandhu et al. 2016 |
+| Hawkes self-excitation / branching-ratio criticality; contagion | Bacry et al. 2015; Aït-Sahalia et al. 2010 |
+| A spectral "phase space" for market transitions | Chakraborti/Pharasi 2021 (P1) |
+| Ricci + PH on Indian markets for fragility | Kulkarni/Pharasi 2024 (P2) |
+
+**The gap (what none of the above does *together*):** integrate a **spectral
+coordinate (with a derived closed-form relationship)** + a **topological/geometric
+coordinate** + a **temporal (Hawkes) coordinate** into one framework, and then
+**evaluate honestly what each lens does and does not add**. P1 has the spectral space
+but no temporal/topological integration; P2 has geometry+topology but no temporal lens
+and no analytic spectral-coordinate derivation; Sandhu/Gidea–Katz are single-lens.
+
+---
+
+## 7. Positioning — what THIS work claims (narrow and defensible)
+
+**Do NOT claim:** RMT, participation ratio / effective rank, persistent homology, Ricci
+curvature, Hawkes processes, the Cauchy–Schwarz inequality, or "a spectral state-space"
+— all established (Sections 2–5).
+
+**Claim only these three, which the closest precedents lack:**
+1. **Three-lens integration adding the temporal (Hawkes) coordinate** that P1 and P2 do
+   not have.
+2. **An analytical, within-framework derivation** of the relationship between the
+   eigenvalue-based coordinates (exact identity + Cauchy–Schwarz bounds + an error term
+   characterizing when the dominant-mode approximation holds) — the precedents are
+   empirical.
+3. **An honest cross-lens evaluation** (independence-vs-informativeness; what each lens
+   does *not* add; nulls reported), rather than proposing any single measure as the
+   contribution.
+
+**Sharpened novelty statement (use this exact scope):**
 > *"We propose an operational framework that integrates complementary spectral,
-> temporal, and topological descriptors of market instability. Within this framework
-> we derive explicit relationships among the spectral coordinates, characterize the
+> temporal, and topological descriptors of market instability. Within this framework we
+> derive explicit relationships among the spectral coordinates, characterize the
 > approximation error theoretically, and empirically determine when the complementary
 > topological and temporal analyses provide additional information."*
 
-It does not depend on being first to conceive a "space" — it claims what the work
-actually does.
-
-## "Why this work is different" (put this table in the paper)
+### "Why this work is different" (put this in the paper)
 | Existing literature | This work |
 |---|---|
-| Studies RMT / spectral phase space alone (P1) | Integrates the spectral view with **temporal (Hawkes)** and topological descriptors |
-| Studies TDA + Ricci geometry alone (P2) | Evaluates them **alongside** a spectral coordinate with a **derived** relationship, not as the contribution itself |
-| Uses participation ratio / entropy as descriptive metrics | **Derives** explicit spectral-coordinate relationships and validates *when* they hold |
-| Reports empirical indicators | Combines **theoretical derivation** with **empirical regime analysis** and honest cross-lens evaluation |
+| Spectral phase space alone (P1) | Adds **temporal (Hawkes)** and topological coordinates to the spectral view |
+| TDA + Ricci geometry alone (P2, Sandhu) | Evaluates them **alongside** a spectral coordinate with a **derived** relationship — not as the contribution itself |
+| Participation ratio / entropy as descriptive metrics | **Derives** explicit spectral-coordinate relationships and validates *when* they hold |
+| Reports empirical crash indicators | Combines **theoretical derivation** + **empirical regime analysis** + honest cross-lens evaluation |
 
-This says "here is the combination and emphasis," not "nobody has done this" — a much
-safer, more defensible scientific claim.
-
-## The one-page test to write before submission
-Answer in writing (Jasmeet + mentor):
-> *"If an expert handed us the five closest papers (starting with P1 and P2) and
-> asked 'why isn't your work just a combination of these?', what is our
-> evidence-backed answer?"*
-If you can answer that clearly in one page, the novelty positioning is strong enough.
-The honest answer likely centers on: the **temporal-lens integration** + the
-**analytical spectral-coordinate derivation** + the **honest what-each-lens-adds
-evaluation** — since P1/P2 cover the spectral-space and geometry/topology pieces.
+This asserts *combination and emphasis*, not "nobody has done this" — a safer, more
+defensible claim.
 
 ---
 
-## How to do it (the process)
-1. **Read each paper's abstract + intro + conclusion** (not every proof).
-2. For each, fill the matrix below: which lenses did they use, which markets,
-   did they do cross-market / complementarity / lead-time / a fragility space?
-3. **Find the 2–3 CLOSEST papers** to yours.
-4. For each closest paper, write one sentence: *"They did X; we differ by doing Y."*
-5. Your **novelty claim** is the intersection of what NONE of them did.
+## 8. The one-page defensibility test (write before submission)
+Answer in writing (Jasmeet + mentor):
+> *"If an expert hands us the five closest papers — P1 (Chakraborti/Pharasi 2021),
+> P2 (Kulkarni/Pharasi 2024), Sandhu et al. 2016, Gidea–Katz 2018, Bacry et al. 2015 —
+> and asks 'why isn't your work just a combination of these?', what is our
+> evidence-backed answer?"*
 
-## The matrix (fill this in)
-| Paper (author, year) | RMT | TDA | Hawkes | Multi-market | Complementarity | Lead-time | Unified "space" | What they did | **How we differ** |
-|---|---|---|---|---|---|---|---|---|---|
-| Marchenko & Pastur 1967 | ✓ | | | | | | | RMT noise band (pure math) | applied + integrated |
-| Laloux/Bouchaud/Potters 1999 | ✓ | | | | | | | RMT cleaning of financial covariance | ... |
-| Plerou et al 2002 | ✓ | | | | | | | RMT of stock correlations | ... |
-| Gidea & Katz 2018 | | ✓ | | | | | | TDA landscapes of crashes | ... |
-| Kulkarni et al 2023 | | ✓ | | | | | | TDA on Indian NSE/BSE | ... |
-| Rai et al 2024 | | ✓ | | | | | | TDA extreme events, Indian | ... |
-| Bacry/Mastromatteo/Muzy 2015 | | | ✓ | | | | | Hawkes processes in finance (survey) | ... |
-| Kamps & Kleinberg 2018 | | | | | | | | crypto pump-and-dump detection | ... |
-| Billio et al 2012 | | | | | | | | econometric systemic-risk / connectedness | ... |
-| Sornette (crashes as critical phenomena) | | | | | | | | crashes as phase transitions | ... |
-| *(add more as you find them)* | | | | | | | | | |
+If you can answer clearly in one page, the positioning is strong enough. The honest
+answer centers on the three claims in Section 7 (temporal-lens integration + analytic
+derivation + honest evaluation), since the precedents already cover the spectral-space
+and geometry/topology pieces.
 
-## Starting papers to look up (seed list — find more from their citations)
-**Spectral / RMT in finance**
-- Marchenko & Pastur (1967) — the noise band.
-- Laloux, Cizeau, Bouchaud, Potters (1999) — *Noise dressing of financial correlation matrices.*
-- Plerou et al. (2002) — RMT of the stock-return correlation matrix (uses IPR of eigenvectors).
-- Ledoit & Wolf (2004) — shrinkage covariance (your RMT-vs-LW baseline).
-- Bouchaud & Potters (2009) — *Financial applications of RMT* (participation ratio / market mode).
-- Guhr, Müller-Groeling, Weidenmüller (1998) — RMT review (IPR / localization background).
+---
 
-**Effective rank / participation ratio (the concession references — cite these)**
-- Roy & Vetterli (2007) — *The effective rank: a measure of effective dimensionality* (defines the concept you use as coordinate T).
-- (Participation ratio / IPR appear throughout the RMT-finance papers above — these
-  establish that the *measure* is standard, so your novelty is its *use in the
-  framework*, not the measure itself.)
+## 9. What remains for Jasmeet + mentor (the actual research)
+1. **Read ★ / ★★ papers in full** and confirm each "how we differ" line survives contact
+   with the actual method sections (especially P2 — the biggest overlap).
+2. **Scan 2025–2026 q-fin / arXiv preprints** for any newer integrated framework; the
+   topological-early-warning and RMT-fragility areas are active and the window is
+   narrowing.
+3. **Write the Section 8 one-pager.** If a precedent turns out closer than expected,
+   narrow the claim further — honestly, and now rather than at judging.
 
-**Geometric / TDA in finance**
-- Gidea & Katz (2018) — *TDA of financial time series: landscapes of crashes.*
-- Kulkarni et al. (2023), Rai et al. (2024) — TDA on Indian markets (closest to your TDA).
-
-**Temporal / Hawkes + manipulation**
-- Hawkes (1971) — original self-exciting processes.
-- Bacry, Mastromatteo, Muzy (2015) — Hawkes in finance (survey).
-- Kamps & Kleinberg (2018); Xu & Livshits (2019) — crypto pump-and-dump detection.
-
-**Systemic risk / fragility / connectedness (your framing's neighbours)**
-- Billio, Getmansky, Lo, Pelizzon (2012) — connectedness & systemic risk.
-- Diebold & Yilmaz — connectedness measures.
-- Sornette — crashes as critical phenomena / phase transitions.
-
-## Where to search
-- **Google Scholar** (search: "topological data analysis financial crash", "random
-  matrix theory portfolio", "Hawkes market manipulation", "systemic fragility").
-- **arXiv q-fin** (quantitative finance preprints).
-- **SSRN** (finance working papers).
-- Follow the **citation trails** of the closest papers (both directions).
-
-## The output you need
-Two things, in your own words:
-1. **A filled matrix** (above).
-2. **A novelty paragraph:** *"The closest prior work is [X, Y]. They studied [...].
-   To our knowledge, no prior work [combines all three lenses across multiple
-   markets / tests their complementarity / establishes the staged lead-time /
-   derives the spectral-geometric redundancy]. That is our contribution."*
-
-**Do this honestly.** If you find someone already did most of it, that's crucial to
-know *now* — and you narrow your claim to what's genuinely left. That honesty is
-exactly what a strong researcher (and a judge) respects.
+## References (verified; complete with DOIs/arXiv IDs during write-up)
+- Marchenko & Pastur (1967). *Distribution of eigenvalues for some sets of random matrices.*
+- Laloux, Cizeau, Bouchaud, Potters (1999). *Noise dressing of financial correlation matrices.* PRL.
+- Plerou, Gopikrishnan, Rosenow, Amaral, Guhr, Stanley (2002). *Random matrix approach to cross correlations.* Phys. Rev. E.
+- Bouchaud & Potters (2009). *Financial applications of random matrix theory.*
+- Roy & Vetterli (2007). *The effective rank: a measure of effective dimensionality.* EUSIPCO.
+- Gidea & Katz (2018). *TDA of financial time series: landscapes of crashes.* Physica A 491:820–834. arXiv:1703.04385.
+- Sandhu, Georgiou, Tannenbaum (2016). *Ricci curvature: an economic indicator for market fragility and systemic risk.* Science Advances 2(5):e1501495.
+- Hawkes (1971). *Spectra of some self-exciting and mutually exciting point processes.* Biometrika.
+- Bacry, Mastromatteo, Muzy (2015). *Hawkes processes in finance.* arXiv:1502.04592.
+- Aït-Sahalia, Cacho-Diaz, Laeven (2010). *Modeling financial contagion using mutually exciting jump processes.* NBER w15850.
+- Chakraborti, Sharma, Pharasi et al. (2021). *Phase separation and scaling in correlation structures of financial markets.* J. Phys: Complexity. arXiv:1910.06242.  ★★
+- Kulkarni, Pharasi et al. (2024). *Investigation of Indian stock markets using TDA and geometry-inspired network measures.* Physica A. arXiv:2311.17016.  ★★
+- Billio, Getmansky, Lo, Pelizzon (2012). *Econometric measures of connectedness and systemic risk.* J. Financial Economics.
+- Sornette. *Why Stock Markets Crash* (critical phenomena / log-periodic precursors).
