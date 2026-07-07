@@ -115,6 +115,25 @@ To avoid the "decide the conclusion first" trap, fix the rules now:
   reliable warning than established indicators?"* — NOT "it predicts crashes." If it
   does not beat the baselines, that is the finding, reported as prominently.
 
+**RESULT (`cross_market_prediction.py`, 5 markets, crash-warning AUC vs baselines):**
+
+| Market | Fragility | volatility | avg_corr | spectral_R | beats baselines? |
+|---|---|---|---|---|---|
+| India | 0.612 | 0.544 | 0.576 | 0.553 | **YES** |
+| US | 0.527 | 0.628 | 0.582 | 0.567 | no |
+| Japan | 0.509 | 0.523 | 0.534 | 0.514 | no |
+| UK | 0.536 | 0.539 | 0.615 | 0.620 | no |
+| HK | 0.628 | 0.577 | 0.626 | 0.619 | ~tie |
+
+**Honest finding (important, report prominently):** the Fragility Index beats all
+baselines in **only 1 of 5 markets — India, the market it was developed on.** Elsewhere
+it ties or loses to trivial volatility / average-correlation baselines. This is
+**development-market bias**: the apparent edge does NOT generalize, so the defensible
+claim is *characterization, not out-of-sample prediction*. Reporting the home-market
+win as a bias (not hiding it) is the credible scientific move. (Next: bootstrap CIs on
+the AUC gaps; add crypto with proper alignment; re-check whether ANY single lens
+generalizes better than the composite.) — Jasmeet to reproduce & own.
+
 ---
 
 ## 5. Prioritized roadmap (what's mine to scaffold vs. YOURS to own)
