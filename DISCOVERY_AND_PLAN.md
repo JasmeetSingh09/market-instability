@@ -73,10 +73,11 @@ to reporting **whichever** outcome occurs, including the null.
 - **Design (`crisis_trajectories.py`):** trace F=(R,T,H) through the run-up to five U.S.
   crises (Dot-com 2000, GFC 2008, Euro 2011, COVID 2020, 2022), z-scored per crisis,
   aligned by event time; measure pairwise trajectory correlation across crises.
-- **RESULT (a genuine second discovery):** the trajectories are **heterogeneous** — avg
-  pairwise correlation ≈ **+0.02 (R), +0.00 (T), +0.22 (H)**. **Crises do NOT trace a
-  common path through Fragility Space; there appear to be distinct *classes* of crises**
-  rather than one universal fragility trajectory. (The reviewer's point: "if they don't
+- **RESULT (Empirical Finding 2 — use "empirical finding" in the paper, not "discovery",
+  so the wording does not outrun the evidence):** the trajectories are **heterogeneous**
+  — avg pairwise correlation ≈ **+0.02 (R), +0.00 (T), +0.22 (H)**. **Crises do NOT trace
+  a common path through Fragility Space; there appear to be distinct *classes* of
+  crises** rather than one universal fragility trajectory. (The reviewer's point: "if they don't
   follow the same path, that's also a discovery.") The temporal lens H is the *least*
   dissimilar (+0.22) — a hint that self-excitation is the most shared feature, worth a
   closer look.

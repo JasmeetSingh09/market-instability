@@ -145,6 +145,44 @@ A defense checklist. Every claim below is exactly what the evidence supports; th
 - Do **not** imply RMT, TDA, Hawkes, or Ricci curvature are new — the novelty is the
   integrated characterization and its honest evaluation.
 
+## 6b. Synthesis — the conclusion table (this IS the paper's conclusion)
+
+The central question is no longer *"does Fragility Space predict crashes?"* (it does
+not, significantly). It is *"what does the framework reveal that existing methods do
+not?"* The whole project reduces to four answered questions:
+
+| Question | Answer | Evidence |
+|---|---|---|
+| Is fragility predictable? | No significant improvement over simple baselines | 9-market bootstrap CIs all include 0 |
+| Is fragility universal across crises? | No — crises are heterogeneous | Crisis-trajectory correlations ≈ 0 |
+| Is the spectral lens alone enough? | No — its coupling to geometry is regime-dependent | corr(R,T): −0.09 calm → −0.36 crisis |
+| Why multiple lenses, then? | Each captures behaviour the others miss | cross-lens evaluation (below) |
+
+## 6c. What each lens reveals that existing methods cannot (the discussion spine)
+
+For every finding, the scientifically valuable question is *why couldn't a standard
+method already tell us this?*
+
+- **Regime-dependent coupling (Finding 1):** *volatility* cannot reveal it — volatility
+  is a single scalar with no notion of the *relationship between* two structural
+  descriptors; *PCA* cannot, because PCA gives the spectrum but not its link to the
+  independent topological signal. Only holding spectral and topological coordinates
+  *together* exposes that their agreement is a crisis phenomenon.
+- **Crisis heterogeneity (Finding 2):** *volatility/VIX* cannot reveal it — every crisis
+  looks like "high volatility," so a scalar cannot distinguish crisis *types*; the
+  multi-coordinate trajectory can show that the *path* differs.
+- **No predictive edge (Finding 3):** *Hawkes alone* cannot establish this — it took the
+  honest composite-vs-baselines evaluation, across markets, to show the framework's
+  value is characterization, not prediction. The negative result is itself the
+  contribution.
+
+**The one-paragraph identity of the paper (embrace the evolution):**
+> *"We investigate how different mathematical perspectives describe systemic market
+> fragility. Some relationships strengthen during crises (spectral–geometric coupling),
+> some vanish in calm markets, crises do not share a universal trajectory, and widely
+> used predictive intuitions do not generalize across markets. Our contribution is an
+> interpretable framework that makes those distinctions explicit."*
+
 ## 7. What NOT to do now (per the frozen-scope decision)
 
 No new lenses, no quantum/chaos/entropy/GNN analogies. From here the only changes
