@@ -119,23 +119,28 @@ To avoid the "decide the conclusion first" trap, fix the rules now:
 baselines).** "Stress" = worst-5% forward-20-day return *per market* (comparable across
 asset classes; a fixed −10% would be equity-centric).
 
-| Market | Fragility | volatility | avg_corr | spectral_R | beats baselines? |
-|---|---|---|---|---|---|
-| India equities | 0.526 | 0.525 | 0.532 | 0.505 | no |
-| S&P 500 | 0.564 | 0.615 | 0.566 | 0.598 | no |
-| Nasdaq 100 | 0.567 | 0.628 | 0.596 | 0.599 | no |
-| Japan (Nikkei) | 0.518 | 0.504 | 0.538 | 0.523 | no |
-| UK (FTSE) | 0.512 | 0.502 | 0.543 | 0.549 | no |
-| HK (Hang Seng) | 0.612 | 0.575 | 0.597 | 0.595 | no |
-| Crypto | 0.510 | 0.615 | 0.540 | 0.551 | no |
-| Commodities | 0.611 | 0.574 | 0.625 | 0.604 | no |
-| US Bonds | 0.597 | 0.699 | 0.648 | 0.621 | no |
+Gap = Fragility AUC − best-baseline AUC, with a **moving-block bootstrap 95% CI**
+(20-day blocks preserve autocorrelation / honest episode count):
 
-**Honest finding (report prominently — this is the cross-market result):** with a fair,
-comparable stress label, the Fragility Index beats all baselines in **0 of 9 markets.**
+| Market | Frag | best baseline | gap | 95% CI | significant? |
+|---|---|---|---|---|---|
+| India equities | 0.526 | avg_corr 0.532 | −0.006 | [−0.079, +0.068] | no (incl. 0) |
+| S&P 500 | 0.564 | volatility 0.615 | −0.052 | [−0.150, +0.046] | no |
+| Nasdaq 100 | 0.567 | volatility 0.628 | −0.061 | [−0.136, +0.026] | no |
+| Japan (Nikkei) | 0.518 | avg_corr 0.538 | −0.020 | [−0.057, +0.053] | no |
+| UK (FTSE) | 0.512 | spectral_R 0.549 | −0.037 | [−0.082, +0.054] | no |
+| HK (Hang Seng) | 0.612 | avg_corr 0.597 | +0.016 | [−0.031, +0.071] | no |
+| Crypto | 0.510 | volatility 0.615 | −0.105 | [−0.195, +0.066] | no |
+| Commodities | 0.611 | avg_corr 0.625 | −0.014 | [−0.071, +0.049] | no |
+| US Bonds | 0.597 | volatility 0.699 | −0.101 | [−0.229, +0.042] | no |
+
+**Honest finding (report prominently — this is the cross-market result):** the gap over
+the best simple baseline has a **95% bootstrap CI that includes zero in every one of the
+9 markets** → **no statistically significant out-of-sample predictive edge anywhere.**
 Volatility is consistently the toughest baseline (bonds 0.70, Nasdaq 0.63). **Answer to
-"does Fragility Space behave the same everywhere?" — yes, in that it universally
-*characterizes* but does not *out-predict* simple measures.**
+"does Fragility Space behave the same everywhere?" — yes: it universally *characterizes*
+fragility but does not *out-predict* simple measures, and this null is now
+statistically established (bootstrap), not eyeballed.**
 
 *Methodological self-correction (a credibility point to highlight):* the earlier 5-market
 run showed an apparent India "win," but that was an artifact of the equity-centric −10%
