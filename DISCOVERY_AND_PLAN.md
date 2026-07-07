@@ -50,6 +50,15 @@ to reporting **whichever** outcome occurs, including the null.
   regime and the lead-lag.
 - **Pre-committed outcomes (report any):** (i) they converge only in crises; (ii) they
   diverge in calm; (iii) one leads the other; (iv) no regime dependence (null).
+- **RESULT (`rq_a_regime_divergence.py`, NSE 2010–2024, vol terciles):** the coupling is
+  **regime-dependent and monotonic** — corr(R, T) = **−0.09 (calm)** → **−0.23
+  (stressed)** → **−0.36 (crisis)**. Outcome (i)+(ii): they are **nearly independent in
+  calm markets and only couple under stress.** *Refined discovery:* the
+  spectral–geometric redundancy is a **crisis phenomenon**; in calm markets the
+  topological lens carries genuinely distinct information. (To verify next: does this
+  replicate across markets (§3), and does the calm-market topological signal give any
+  early warning before R moves?) — Jasmeet to reproduce and own before it enters the
+  paper.
 
 ### RQ-B. When does Hawkes add information eigenvalues cannot?
 - **Hypothesis:** the temporal (Hawkes) lens adds unique warning when self-excitation
