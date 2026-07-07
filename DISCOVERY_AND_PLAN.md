@@ -69,6 +69,23 @@ to reporting **whichever** outcome occurs, including the null.
 - **Pre-committed outcomes:** (i) Hawkes consistently leads → temporal lens is the real
   exception to §1; (ii) Hawkes coincident/lagging (null); (iii) mixed by event type.
 
+### RQ-C′. Does every crisis follow the SAME path through Fragility Space?
+- **Design (`crisis_trajectories.py`):** trace F=(R,T,H) through the run-up to five U.S.
+  crises (Dot-com 2000, GFC 2008, Euro 2011, COVID 2020, 2022), z-scored per crisis,
+  aligned by event time; measure pairwise trajectory correlation across crises.
+- **RESULT (a genuine second discovery):** the trajectories are **heterogeneous** — avg
+  pairwise correlation ≈ **+0.02 (R), +0.00 (T), +0.22 (H)**. **Crises do NOT trace a
+  common path through Fragility Space; there appear to be distinct *classes* of crises**
+  rather than one universal fragility trajectory. (The reviewer's point: "if they don't
+  follow the same path, that's also a discovery.") The temporal lens H is the *least*
+  dissimilar (+0.22) — a hint that self-excitation is the most shared feature, worth a
+  closer look.
+- **Honest caveat (do not overclaim):** the companion "which lens moves first" readout
+  is **unreliable as run** — many crossings hit the window's −70d edge (the coordinate
+  was already elevated), an artifact of z-scoring on the run-up window itself. A trusted
+  lead-order needs a longer *normal-period* baseline (e.g. z-score on the prior year).
+  Flagged as the next refinement; the heterogeneity finding above stands on its own.
+
 ### RQ-C. Is there a universal fragility transition across markets?
 - **Hypothesis:** normalized Fragility trajectories share a common shape before crises.
 - **Design:** normalize F=(R,T,H) per market; align windows to each crisis onset; look

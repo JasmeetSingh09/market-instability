@@ -76,12 +76,15 @@ is blind to (AUC ≈ 0.4).
   self-excitation (Hawkes) carry real signal; geometric topology (TDA), once
   controlled, does not — a nuanced, mature conclusion no single method gives.
 
-## Run the whole framework
+## Reproduce every result (benchmark package)
 ```
-python run_all.py
+python reproduce.py           # regenerate every headline table & finding
+python reproduce.py --quick   # skip the slow ripser / long-history experiments
 ```
-Runs all three analyses in sequence and prints a combined report. (Each can also
-be run on its own inside its folder.)
+One command regenerates the Proposition validation, the geometric independence/role/
+curvature results, the RQ-A regime discovery, the 9-market baseline comparison with
+bootstrap CIs, the crisis-trajectory heterogeneity finding, and the branching-
+criticality null. (Legacy `python run_all.py` still runs the original three lenses.)
 
 ## Folder map
 ```

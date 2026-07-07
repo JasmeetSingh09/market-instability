@@ -1,4 +1,9 @@
-# An Econophysics Fragility Space for Financial Markets: Spectral, Structural, and Temporal Signatures of Loss of Independence
+# An Interpretable Multi-Lens Framework for Characterizing Systemic Market Fragility: Spectral, Structural, and Temporal Signatures of Loss of Independence
+
+*Framing note: the evidence supports **characterization, not prediction** — across
+nine markets the framework shows no statistically significant out-of-sample predictive
+edge over simple baselines (bootstrap CIs include zero). The title and claims reflect
+that. Reproduce every result with `python reproduce.py`.*
 
 *Sample research-paper draft — for review by the strategist/mentor.*
 *Author: Jasmeet Singh. Mentor: [TBD].*
