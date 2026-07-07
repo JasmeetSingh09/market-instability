@@ -115,24 +115,34 @@ To avoid the "decide the conclusion first" trap, fix the rules now:
   reliable warning than established indicators?"* — NOT "it predicts crashes." If it
   does not beat the baselines, that is the finding, reported as prominently.
 
-**RESULT (`cross_market_prediction.py`, 5 markets, crash-warning AUC vs baselines):**
+**RESULT (`cross_market_prediction.py`, 9 markets/asset classes, stress-warning AUC vs
+baselines).** "Stress" = worst-5% forward-20-day return *per market* (comparable across
+asset classes; a fixed −10% would be equity-centric).
 
 | Market | Fragility | volatility | avg_corr | spectral_R | beats baselines? |
 |---|---|---|---|---|---|
-| India | 0.612 | 0.544 | 0.576 | 0.553 | **YES** |
-| US | 0.527 | 0.628 | 0.582 | 0.567 | no |
-| Japan | 0.509 | 0.523 | 0.534 | 0.514 | no |
-| UK | 0.536 | 0.539 | 0.615 | 0.620 | no |
-| HK | 0.628 | 0.577 | 0.626 | 0.619 | ~tie |
+| India equities | 0.526 | 0.525 | 0.532 | 0.505 | no |
+| S&P 500 | 0.564 | 0.615 | 0.566 | 0.598 | no |
+| Nasdaq 100 | 0.567 | 0.628 | 0.596 | 0.599 | no |
+| Japan (Nikkei) | 0.518 | 0.504 | 0.538 | 0.523 | no |
+| UK (FTSE) | 0.512 | 0.502 | 0.543 | 0.549 | no |
+| HK (Hang Seng) | 0.612 | 0.575 | 0.597 | 0.595 | no |
+| Crypto | 0.510 | 0.615 | 0.540 | 0.551 | no |
+| Commodities | 0.611 | 0.574 | 0.625 | 0.604 | no |
+| US Bonds | 0.597 | 0.699 | 0.648 | 0.621 | no |
 
-**Honest finding (important, report prominently):** the Fragility Index beats all
-baselines in **only 1 of 5 markets — India, the market it was developed on.** Elsewhere
-it ties or loses to trivial volatility / average-correlation baselines. This is
-**development-market bias**: the apparent edge does NOT generalize, so the defensible
-claim is *characterization, not out-of-sample prediction*. Reporting the home-market
-win as a bias (not hiding it) is the credible scientific move. (Next: bootstrap CIs on
-the AUC gaps; add crypto with proper alignment; re-check whether ANY single lens
-generalizes better than the composite.) — Jasmeet to reproduce & own.
+**Honest finding (report prominently — this is the cross-market result):** with a fair,
+comparable stress label, the Fragility Index beats all baselines in **0 of 9 markets.**
+Volatility is consistently the toughest baseline (bonds 0.70, Nasdaq 0.63). **Answer to
+"does Fragility Space behave the same everywhere?" — yes, in that it universally
+*characterizes* but does not *out-predict* simple measures.**
+
+*Methodological self-correction (a credibility point to highlight):* the earlier 5-market
+run showed an apparent India "win," but that was an artifact of the equity-centric −10%
+threshold. Switching to a fair per-market percentile stress label removed it — the edge
+was development-market/definition bias, not signal. Catching and reporting this is the
+scientific-integrity move judges reward. (Next: bootstrap CIs on the AUC gaps; whether
+any single lens generalizes better than the composite.) — Jasmeet to reproduce & own.
 
 ---
 

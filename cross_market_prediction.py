@@ -23,18 +23,24 @@ import yfinance as yf
 
 W = 60
 
+# Each market: (constituent tickers, start date). Start dates differ because some
+# asset classes (crypto) have short histories.
 MARKETS = {
-    "India equities": ["RELIANCE.NS","TCS.NS","HDFCBANK.NS","INFY.NS","ICICIBANK.NS",
-                       "ITC.NS","SBIN.NS","LT.NS","HINDUNILVR.NS","BHARTIARTL.NS"],
-    "US equities":    ["AAPL","MSFT","GOOGL","AMZN","META","JPM","XOM","JNJ","PG","WMT"],
-    "Japan (Nikkei)": ["7203.T","6758.T","6861.T","9984.T","8306.T","6098.T","7974.T",
-                       "4063.T","9433.T","8035.T"],
-    "UK (FTSE)":      ["AZN.L","SHEL.L","HSBA.L","ULVR.L","BP.L","GSK.L","RIO.L","DGE.L",
-                       "BATS.L","LLOY.L"],
-    "HK (Hang Seng)": ["0700.HK","9988.HK","0939.HK","1299.HK","0005.HK","3690.HK",
-                       "0941.HK","1810.HK","2318.HK","0388.HK"],
-    "Crypto":         ["BTC-USD","ETH-USD","BNB-USD","XRP-USD","ADA-USD","SOL-USD",
-                       "DOGE-USD","LTC-USD"],
+    "India equities": (["RELIANCE.NS","TCS.NS","HDFCBANK.NS","INFY.NS","ICICIBANK.NS",
+                        "ITC.NS","SBIN.NS","LT.NS","HINDUNILVR.NS","BHARTIARTL.NS"], "2012-01-01"),
+    "S&P 500":        (["AAPL","MSFT","GOOGL","AMZN","JPM","XOM","JNJ","PG","WMT","UNH"], "2012-01-01"),
+    "Nasdaq 100":     (["AAPL","MSFT","NVDA","AMZN","META","GOOGL","AVGO","COST","PEP",
+                        "ADBE","AMD","NFLX","INTC","CSCO"], "2012-01-01"),
+    "Japan (Nikkei)": (["7203.T","6758.T","6861.T","9984.T","8306.T","6098.T","7974.T",
+                        "4063.T","9433.T","8035.T"], "2012-01-01"),
+    "UK (FTSE)":      (["AZN.L","SHEL.L","HSBA.L","ULVR.L","BP.L","GSK.L","RIO.L","DGE.L",
+                        "BATS.L","LLOY.L"], "2012-01-01"),
+    "HK (Hang Seng)": (["0700.HK","9988.HK","0939.HK","1299.HK","0005.HK","3690.HK",
+                        "0941.HK","1810.HK","2318.HK","0388.HK"], "2012-01-01"),
+    "Crypto":         (["BTC-USD","ETH-USD","XRP-USD","LTC-USD","ADA-USD","BNB-USD",
+                        "DOGE-USD"], "2018-01-01"),
+    "Commodities":    (["GC=F","SI=F","CL=F","NG=F","HG=F","ZC=F","ZW=F","ZS=F","BZ=F","PL=F"], "2012-01-01"),
+    "US Bonds":       (["TLT","IEF","SHY","LQD","HYG","AGG","TIP","BND","EMB","MBB"], "2012-01-01"),
 }
 
 
@@ -49,7 +55,7 @@ def auc(score, label):
 
 
 def analyse(tickers, start="2012-01-01"):
-    px = yf.download(tickers, start=start, end="2024-12-31", auto_adjust=True,
+    px = yf.download(list(tickers), start=start, end="2024-12-31", auto_adjust=True,
                      progress=False)["Close"]
     good = [t for t in tickers if t in px and px[t].notna().mean() > 0.85]
     px = px[good].dropna()
@@ -71,8 +77,13 @@ def analyse(tickers, start="2012-01-01"):
         rows.append((Rc, T, H, vol, avgcorr))
     df = pd.DataFrame(rows, columns=["R","T","H","vol","avgcorr"]).fillna(0)
     fwd = pd.Series(mkt).shift(-1).rolling(20).sum().shift(-19).values[W:]
-    df["crash"] = (fwd < -0.10).astype(float)
+    df["fwd"] = fwd
     df = df.dropna()
+    # Comparable cross-asset "stress" label: worst 5% of forward 20-day returns FOR THIS
+    # market (equities, bonds and gold have very different scales, so a fixed -10% would
+    # be equity-centric; the bottom-5% gives every market a ~5% base rate).
+    thr = np.nanpercentile(df["fwd"].values, 5)
+    df["crash"] = (df["fwd"].values < thr).astype(float)
     y = df["crash"].values
     z = lambda s: (s - s.mean()) / (s.std() + 1e-9)
     frag = z(df["R"]) + z(df["T"]) + z(df["H"])
@@ -89,9 +100,9 @@ def run():
           f"{'avg_corr':>9} {'spectral_R':>10} | beats baselines?")
     print("-" * 92)
     results = {}
-    for name, tickers in MARKETS.items():
+    for name, (tickers, start) in MARKETS.items():
         try:
-            r = analyse(tickers)
+            r = analyse(tickers, start=start)
         except Exception as e:
             print(f"{name:>16} | error: {e}"); continue
         if r is None:
