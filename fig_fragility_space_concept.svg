@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="Georgia, serif">
+  <rect width="880" height="520" fill="#ffffff"/>
+  <text x="40" y="40" font-size="20" font-weight="bold" fill="#1f2937">Prior work (established tools, each with a blind spot)  &#8594;  This work (integration)</text>
+
+  <!-- column labels -->
+  <text x="40" y="72" font-size="14" fill="#6b7280" font-style="italic">Existing literature</text>
+  <text x="600" y="72" font-size="14" fill="#6b7280" font-style="italic">This work</text>
+
+  <!-- left boxes -->
+  <g>
+    <rect x="40" y="90" width="330" height="66" rx="8" fill="#eef2ff" stroke="#6366f1"/>
+    <text x="56" y="116" font-size="15" font-weight="bold" fill="#312e81">Random Matrix Theory (spectral)</text>
+    <text x="56" y="138" font-size="12.5" fill="#4b5563">market mode R; blind to time &amp; global geometry</text>
+  </g>
+  <g>
+    <rect x="40" y="172" width="330" height="66" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+    <text x="56" y="198" font-size="15" font-weight="bold" fill="#164e63">Persistent Homology (topological)</text>
+    <text x="56" y="220" font-size="12.5" fill="#4b5563">shape of structure; needs filtration; static in time</text>
+  </g>
+  <g>
+    <rect x="40" y="254" width="330" height="66" rx="8" fill="#f0fdf4" stroke="#22c55e"/>
+    <text x="56" y="280" font-size="15" font-weight="bold" fill="#14532d">Ricci Curvature (network geometry)</text>
+    <text x="56" y="302" font-size="12.5" fill="#4b5563">fragility geometry; graph-construction sensitive</text>
+  </g>
+  <g>
+    <rect x="40" y="336" width="330" height="66" rx="8" fill="#fef2f2" stroke="#ef4444"/>
+    <text x="56" y="362" font-size="15" font-weight="bold" fill="#7f1d1d">Hawkes Processes (temporal)</text>
+    <text x="56" y="384" font-size="12.5" fill="#4b5563">event self-excitation; blind to global geometry</text>
+  </g>
+
+  <!-- arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <path d="M370,123 C 480,123 470,230 560,238" fill="none" stroke="#6b7280" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <path d="M370,205 C 470,205 480,244 560,250" fill="none" stroke="#6b7280" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <path d="M370,287 C 470,287 480,262 560,262" fill="none" stroke="#6b7280" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <path d="M370,369 C 480,369 470,282 560,274" fill="none" stroke="#6b7280" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- center box: Fragility Space -->
+  <g>
+    <rect x="560" y="176" width="280" height="160" rx="12" fill="#111827" stroke="#111827"/>
+    <text x="700" y="214" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Fragility Space</text>
+    <text x="700" y="244" font-size="18" fill="#a5b4fc" text-anchor="middle" font-family="monospace">F = (R, T, H)</text>
+    <text x="700" y="276" font-size="12.5" fill="#d1d5db" text-anchor="middle">spectral R &#183; geometric T &#183; temporal H</text>
+    <text x="700" y="300" font-size="12" fill="#9ca3af" text-anchor="middle">+ derived R&#8211;T relationship (identity + bounds)</text>
+    <text x="700" y="320" font-size="12" fill="#9ca3af" text-anchor="middle">+ honest what-each-lens-adds evaluation</text>
+  </g>
+
+  <!-- footnote -->
+  <text x="40" y="450" font-size="12.5" fill="#6b7280">Contribution = the integration, the within-framework derivation, and the honest evaluation &#8212;</text>
+  <text x="40" y="470" font-size="12.5" fill="#6b7280">NOT the individual tools (all established) nor the idea of a spectral state-space (cf. Chakraborti/Pharasi 2021).</text>
+</svg>

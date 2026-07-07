@@ -21,6 +21,20 @@ The central honesty of this review: **every individual tool is mature**, and rec
 work is actively *combining* them. The contribution is therefore not any lens but a
 specific synthesis — and the review is written to make that boundary unmistakable.
 
+**Figure 1 (conceptual):** how the established tools relate to this work — see
+[`fig_fragility_space_concept.svg`](fig_fragility_space_concept.svg). Each prior tool
+has a *blind spot*; the framework carries all three coordinates together.
+
+```
+   EXISTING LITERATURE (each tool, its blind spot)            THIS WORK
+   ─────────────────────────────────────────────
+   Random Matrix Theory (spectral) ── blind to time ─┐
+   Persistent Homology (topological) ── static ──────┤        Fragility Space
+   Ricci Curvature (network geometry) ── graph-dep. ──┼──►     F = (R, T, H)
+   Hawkes Processes (temporal) ── blind to geometry ─┘     (+ derived R–T relation,
+                                                             + honest evaluation)
+```
+
 ---
 
 ## 2. Spectral lens — Random Matrix Theory in finance
@@ -48,6 +62,12 @@ project uses as its coordinate T.
 *Takeaway:* the market-mode largest eigenvalue and the participation-ratio / effective
 rank are **standard**. The project claims neither; it uses them as coordinates.
 
+*Limitation motivating integration:* RMT / participation-ratio methods characterize the
+**dominant (linear) correlation structure** but are **static and cross-sectional** —
+they say nothing about the **temporal triggering** of extreme events, and they do not
+capture the **global geometric / topological organization** of the network beyond the
+eigenvalue spectrum.
+
 ---
 
 ## 3. Geometric and topological lenses
@@ -74,6 +94,14 @@ crashes are preceded by system-level curvature/robustness changes. This is the d
 precedent for the project's Ricci-curvature analysis; the project **reproduces**, and
 does not claim, this result.
 
+*Limitation motivating integration:* persistent homology captures topological evolution
+but requires **choices of filtration, distance metric, and summary** (persistence
+landscape vs. persistent entropy) whose interpretation is non-trivial; discrete
+Ricci curvature captures network geometry but is **sensitive to graph construction**
+(correlation threshold vs. minimum spanning tree) — a sensitivity Kulkarni/Pharasi
+(P2) themselves note. Crucially, **both are static and geometric — neither encodes the
+temporal self-excitation / triggering of extreme events.**
+
 ---
 
 ## 4. Temporal lens — self-exciting processes
@@ -95,6 +123,12 @@ shock in one asset raises jump intensity in others — self-excitation as a syst
 *Takeaway:* Hawkes-as-self-excitation and branching-ratio criticality are established.
 The project claims neither the model nor criticality; it **integrates** the temporal
 lens with the others and reports an honest null on daily-data criticality.
+
+*Limitation motivating integration:* Hawkes models capture the **temporal contagion /
+self-excitation** of events but not the **global geometric or topological organization**
+of the cross-sectional correlation structure; and on daily (non-tick) data the branching
+ratio can partly reflect ordinary volatility clustering rather than genuine
+microstructural self-excitation.
 
 ---
 
@@ -138,12 +172,21 @@ phenomena / log-periodic precursors). Neither integrates the three specific lens
 | A spectral "phase space" for market transitions | Chakraborti/Pharasi 2021 (P1) |
 | Ricci + PH on Indian markets for fragility | Kulkarni/Pharasi 2024 (P2) |
 
-**The gap (what none of the above does *together*):** integrate a **spectral
-coordinate (with a derived closed-form relationship)** + a **topological/geometric
-coordinate** + a **temporal (Hawkes) coordinate** into one framework, and then
-**evaluate honestly what each lens does and does not add**. P1 has the spectral space
-but no temporal/topological integration; P2 has geometry+topology but no temporal lens
-and no analytic spectral-coordinate derivation; Sandhu/Gidea–Katz are single-lens.
+**The motivation (complementary blind spots).** The limitations above are
+*complementary*: the spectral lens is static and ignores temporal triggering; the
+geometric/topological lenses are static and ignore self-excitation; the temporal lens
+ignores global geometric organization. Each lens is blind to what the others see —
+which is precisely why a framework that carries all three coordinates *together* can
+say more than any one alone.
+
+**Positioning (standard, safe phrasing).** *To the best of our knowledge, we did not
+identify prior work that combines a spectral coordinate (with a derived closed-form
+relationship), a topological/geometric coordinate, and a temporal (Hawkes) coordinate
+in one framework and then evaluates honestly what each lens does and does not add.*
+P1 has the spectral space but no temporal/topological integration; P2 has
+geometry+topology but no temporal lens and no analytic spectral-coordinate derivation;
+Sandhu / Gidea–Katz are single-lens. (This is a "to the best of our knowledge" claim,
+pending the full-text reads in Section 9 — not an assertion of exhaustive search.)
 
 ---
 
@@ -199,8 +242,13 @@ and geometry/topology pieces.
 ---
 
 ## 9. What remains for Jasmeet + mentor (the actual research)
-1. **Read ★ / ★★ papers in full** and confirm each "how we differ" line survives contact
-   with the actual method sections (especially P2 — the biggest overlap).
+1. **Read these seven in full** (not just abstracts) and revise this review against
+   their actual **methods and limitations**: Laloux et al. (1999), Roy & Vetterli
+   (2007), Gidea & Katz (2018), Sandhu et al. (2016), Bacry et al. (2015),
+   Chakraborti et al. (2021, P1), Kulkarni et al. (2024, P2). Confirm each "how we
+   differ" line survives contact with the method sections — **especially P2 (biggest
+   overlap)**. The limitations attributed to prior work above are drawn from abstracts;
+   verify them against the full text before relying on them in the paper.
 2. **Scan 2025–2026 q-fin / arXiv preprints** for any newer integrated framework; the
    topological-early-warning and RMT-fragility areas are active and the window is
    narrowing.
