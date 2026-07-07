@@ -104,8 +104,12 @@ def analyse(tickers, start="2012-01-01"):
         H = np.corrcoef(sq[:-1], sq[1:])[0, 1] if len(sq) > 2 else 0.0
         vol = m.std() * np.sqrt(252)
         avgcorr = (C.sum() - N) / (N * (N - 1))
-        rows.append((Rc, T, H, vol, avgcorr))
-    df = pd.DataFrame(rows, columns=["R","T","H","vol","avgcorr"]).fillna(0)
+        # spectral (von-Neumann-style) entropy of the eigenvalue distribution — a
+        # standard econophysics disorder measure and a genuinely different baseline
+        p = vals / vals.sum()
+        spec_entropy = float(-(p * np.log(p + 1e-12)).sum())
+        rows.append((Rc, T, H, vol, avgcorr, spec_entropy))
+    df = pd.DataFrame(rows, columns=["R","T","H","vol","avgcorr","spec_entropy"]).fillna(0)
     fwd = pd.Series(mkt).shift(-1).rolling(20).sum().shift(-19).values[W:]
     df["fwd"] = fwd
     df = df.dropna()
@@ -117,8 +121,10 @@ def analyse(tickers, start="2012-01-01"):
     y = df["crash"].values
     z = lambda s: (s - s.mean()) / (s.std() + 1e-9)
     frag = (z(df["R"]) + z(df["T"]) + z(df["H"])).values
+    # Baselines: volatility, average correlation (~network centrality), spectral R
+    # (= PCA first-component variance share, since sum(eig)=N), and spectral entropy.
     baselines = {"volatility": df["vol"].values, "avg_corr": df["avgcorr"].values,
-                 "spectral_R": df["R"].values}
+                 "spectral_R/PCA": df["R"].values, "spec_entropy": df["spec_entropy"].values}
     base_aucs = {k: auc(v, y) for k, v in baselines.items()}
     best_name = max(base_aucs, key=base_aucs.get)
     gap = auc(frag, y) - base_aucs[best_name]
